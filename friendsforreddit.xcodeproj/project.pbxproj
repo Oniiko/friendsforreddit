@@ -16,6 +16,8 @@
 		E72D5F031CB40A960011EE82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E72D5F011CB40A960011EE82 /* LaunchScreen.storyboard */; };
 		E72D5F0E1CB40A960011EE82 /* friendsforredditTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5F0D1CB40A960011EE82 /* friendsforredditTests.m */; };
 		E72D5F191CB40A970011EE82 /* friendsforredditUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5F181CB40A970011EE82 /* friendsforredditUITests.m */; };
+		E72D5F281CB41F9B0011EE82 /* RedditAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5F271CB41F9B0011EE82 /* RedditAPI.m */; };
+		E72D5F2B1CB4231A0011EE82 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5F2A1CB4231A0011EE82 /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		E72D5F141CB40A970011EE82 /* friendsforredditUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = friendsforredditUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E72D5F181CB40A970011EE82 /* friendsforredditUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = friendsforredditUITests.m; sourceTree = "<group>"; };
 		E72D5F1A1CB40A970011EE82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E72D5F261CB41F9B0011EE82 /* RedditAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedditAPI.h; sourceTree = "<group>"; };
+		E72D5F271CB41F9B0011EE82 /* RedditAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedditAPI.m; sourceTree = "<group>"; };
+		E72D5F291CB4231A0011EE82 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		E72D5F2A1CB4231A0011EE82 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,10 @@
 				E72D5EF71CB40A960011EE82 /* FirstViewController.m */,
 				E72D5EF91CB40A960011EE82 /* SecondViewController.h */,
 				E72D5EFA1CB40A960011EE82 /* SecondViewController.m */,
+				E72D5F261CB41F9B0011EE82 /* RedditAPI.h */,
+				E72D5F271CB41F9B0011EE82 /* RedditAPI.m */,
+				E72D5F291CB4231A0011EE82 /* Constants.h */,
+				E72D5F2A1CB4231A0011EE82 /* Constants.m */,
 				E72D5EFC1CB40A960011EE82 /* Main.storyboard */,
 				E72D5EFF1CB40A960011EE82 /* Assets.xcassets */,
 				E72D5F011CB40A960011EE82 /* LaunchScreen.storyboard */,
@@ -278,7 +288,9 @@
 				E72D5EFB1CB40A960011EE82 /* SecondViewController.m in Sources */,
 				E72D5EF51CB40A960011EE82 /* AppDelegate.m in Sources */,
 				E72D5EF81CB40A960011EE82 /* FirstViewController.m in Sources */,
+				E72D5F281CB41F9B0011EE82 /* RedditAPI.m in Sources */,
 				E72D5EF21CB40A960011EE82 /* main.m in Sources */,
+				E72D5F2B1CB4231A0011EE82 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
