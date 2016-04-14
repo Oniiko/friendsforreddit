@@ -10,4 +10,18 @@
 
 @implementation User
 
+@synthesize username;
+
+-(id) initWithName:(NSString *)name{
+    self = [super init];
+    
+    if (!self)
+        return nil;
+    
+    username = name;
+    
+    
+    return self;
+}
+
 @end

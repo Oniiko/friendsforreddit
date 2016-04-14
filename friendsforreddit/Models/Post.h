@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Post : NSObject
 
@@ -21,6 +22,8 @@
     @property (nonatomic, assign, readonly) CGFloat upvoteRatio;
 
     //If voted on by logged-in user
-    @property (nonatomic, copy, readonly) BOOL likes;
+    @property (nonatomic, readonly) BOOL likes;
+
+-(id) initWithDictionary:(NSDictionary *) dictionary;
 
 @end

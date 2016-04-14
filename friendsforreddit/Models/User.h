@@ -17,4 +17,6 @@
     //If friends with logged-in user
     @property (nonatomic, assign, readonly, getter = isFriend) BOOL friend;
 
+-(id) initWithName:(NSString *) name;
+
 @end
