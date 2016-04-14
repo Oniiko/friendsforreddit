@@ -19,8 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    RedditAPI *api = [[RedditAPI alloc] init];
-    
+    RedditAPI *api = [RedditAPI sharedRedditAPI];
     self.friends = [[NSMutableArray alloc] init];
     
     [api getFriendsWithCompletion:^(NSArray *returnedFriends){
