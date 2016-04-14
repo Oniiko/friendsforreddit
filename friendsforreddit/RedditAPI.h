@@ -7,18 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Models/Comment.h"
+#import "Models/Post.h"
+#import "Models/User.h"
+
+
+typedef void (^NSDataHandler)(NSData *);
+typedef void (^NSArrayHandler)(NSArray *);
+
 
 @interface RedditAPI : NSObject
 
 @property NSString *accessToken;
 @property NSString *refreshToken;
 
++ (RedditAPI *) sharedRedditAPI;
+
 - (void) requestAccessToken;
 - (void) refreshAccessToken;
 
-- (NSArray *) getPostsAfterPostID: (NSString *)postId InOrder: (NSString *)order;
-- (NSArray *) getCommentsAfterCommentID: (NSString *)commentId InOrder: (NSString *)order;
-- (NSArray *) getFriends;
+- (void) getPostsAfterPostID: (NSString *)postId InOrder: (NSString *)order Completion:(NSArrayHandler) completion;
+- (void) getCommentsAfterCommentID: (NSString *)commentId InOrder: (NSString *)order Completion:(NSArrayHandler) completion;
+- (void) getFriendsWithCompletion:(NSArrayHandler) completion;
 
 - (void) addFriendWithName: (NSString *)userName;
 - (void) removeFriendWithName: (NSString *)userName;
