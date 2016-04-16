@@ -21,6 +21,11 @@
     return YES;
 }
 
+/*
+* Processes the return url from ModalWebView
+*
+* Sends additional request for authentication and refresh tokens
+*/
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     if ([url.scheme isEqualToString:@"friendsforreddit"]) {
@@ -29,11 +34,13 @@
         NSString *codeQuery = [codeParam objectAtIndex:0];
         NSString *code = [codeQuery stringByReplacingOccurrencesOfString:@"code=" withString:@""];
         NSLog(@"My code is %@", code);
-        // Finish the OAuth flow with this code
-        
-        NSURL *accessTokenURL = [NSURL URLWithString: [NSString stringWithFormat: @"%@", BaseAccessURL]];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:accessTokenURL];
+
+        // Make HTTP request for access token
+        NSURL *authURL = [NSURL URLWithString: [NSString stringWithFormat: @"%@", BaseAccessURL]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:authURL];
         NSString *postParams = [NSString stringWithFormat: @"grant_type=authorization_code&code=%@&redirect_uri=%@", code, @"friendsforreddit://response"];
+        
+        //Encode Basic Authentication Header
         NSString *authStr = [NSString stringWithFormat:@"%@:%@", ClientID, @""];
         NSData *authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
         NSString *authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
@@ -47,6 +54,7 @@
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[postParams dataUsingEncoding:NSUTF8StringEncoding]];
         
+        //Send request to get access token
         NSURLSession *session = [NSURLSession sharedSession];
         NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:
                                       ^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -57,9 +65,7 @@
                                               NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                    options:NSJSONReadingAllowFragments
                                                                                                      error:nil];
-                                              //for(NSString *key in [json allKeys]) {
-                                              //    NSLog(@"%@: %@", key, [json objectForKey:key]);
-                                              //}
+                                              //Save access and refresh tokens in NSUserDefaults (Change to Keychain Later)
                                               [[NSUserDefaults standardUserDefaults] setValue: json[@"access_token"] forKey:@"access_token"];
                                               [[NSUserDefaults standardUserDefaults] setValue: json[@"refresh_token"] forKey:@"refresh_token"];
                                               [[NSUserDefaults standardUserDefaults] synchronize];
@@ -67,8 +73,6 @@
                                       }];
         
         [task resume];
-        NSLog(@"Auth Token: %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"]);
-        NSLog(@"Refresh Token: %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"refresh_token"]);
         return YES;
     }
     

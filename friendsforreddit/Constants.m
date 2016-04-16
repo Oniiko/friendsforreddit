@@ -10,7 +10,7 @@
 
 @implementation Constants
 
- NSString * const BaseOAuthURL = @"https://oauth.reddit.com/";
+ NSString * const BaseURL = @"https://oauth.reddit.com/";
  NSString * const ClientID = @"X74G4QWSkO_ofA";
  NSString * const BaseAuthorizationURL = @"https://www.reddit.com/api/v1/authorize.compact";
  NSString * const BaseAccessURL = @"https://www.reddit.com/api/v1/access_token/";

@@ -15,11 +15,14 @@
     @property (nonatomic, copy, readonly) NSString *parent_id;
     @property (nonatomic, copy, readonly) NSString *link_title;
     @property (nonatomic, copy, readonly) NSString *link_url;
-    @property (nonatomic, copy, readonly) NSUInteger score;
-    @property (nonatomic, copy, readonly) BOOL score_hidden;
-    @property (nonatomic, copy, readonly) NSMutableArray *replies;
+    @property (nonatomic, copy, readonly) NSDate *created;
+    @property (nonatomic, assign, readonly) NSUInteger score;
+    @property (nonatomic, assign, readonly) BOOL score_hidden;
+    @property (nonatomic, assign, readonly) NSMutableArray *replies;
 
     //If voted on by logged-in user
-    @property (nonatomic, copy, readonly) BOOL likes;
+    @property (nonatomic, assign, readonly) BOOL likes;
+
+-(id) initWithDictionary:(NSDictionary *) dictionary;
 
 @end
