@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Constants.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +19,60 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([url.scheme isEqualToString:@"friendsforreddit"]) {
+        NSArray *queryParams = [[url query] componentsSeparatedByString:@"&"];
+        NSArray *codeParam = [queryParams filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF BEGINSWITH %@", @"code="]];
+        NSString *codeQuery = [codeParam objectAtIndex:0];
+        NSString *code = [codeQuery stringByReplacingOccurrencesOfString:@"code=" withString:@""];
+        NSLog(@"My code is %@", code);
+        // Finish the OAuth flow with this code
+        
+        NSURL *accessTokenURL = [NSURL URLWithString: [NSString stringWithFormat: @"%@", BaseAccessURL]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:accessTokenURL];
+        NSString *postParams = [NSString stringWithFormat: @"grant_type=authorization_code&code=%@&redirect_uri=%@", code, @"friendsforreddit://response"];
+        NSString *authStr = [NSString stringWithFormat:@"%@:%@", ClientID, @""];
+        NSData *authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
+        NSString *authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
+        
+        //Set HTTP header values
+        [request setValue:[NSString stringWithFormat: @"%@", authValue] forHTTPHeaderField: @"Authorization"];
+        [request setValue:UserAgent forHTTPHeaderField:@"User-Agent"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        
+        //Set HTTP Method and Body
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[postParams dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:
+                                      ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                          if (error){
+                                              NSLog(@"Error");
+                                          } else {
+                                              NSLog(@"Request Successful");
+                                              NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                   options:NSJSONReadingAllowFragments
+                                                                                                     error:nil];
+                                              //for(NSString *key in [json allKeys]) {
+                                              //    NSLog(@"%@: %@", key, [json objectForKey:key]);
+                                              //}
+                                              [[NSUserDefaults standardUserDefaults] setValue: json[@"access_token"] forKey:@"access_token"];
+                                              [[NSUserDefaults standardUserDefaults] setValue: json[@"refresh_token"] forKey:@"refresh_token"];
+                                              [[NSUserDefaults standardUserDefaults] synchronize];
+                                          }
+                                      }];
+        
+        [task resume];
+        NSLog(@"Auth Token: %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"]);
+        NSLog(@"Refresh Token: %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"refresh_token"]);
+        return YES;
+    }
+    
+    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
