@@ -20,6 +20,8 @@
 @synthesize link_title;
 @synthesize score;
 @synthesize created;
+@synthesize comment_id;
+@synthesize subreddit;
 
 -(id) initWithDictionary:(NSDictionary *) dictionary{
     self = [super init];
@@ -33,6 +35,8 @@
     link_title = dictionary[@"link_title"];
     parent_id = dictionary[@"parent_id"];
     score = [dictionary[@"score"] integerValue];
+    comment_id = dictionary[@"id"];
+    subreddit = dictionary[@"subreddit"];
     
     NSTimeInterval epochTime = [dictionary[@"created"] doubleValue];
     created = [[NSDate alloc] initWithTimeIntervalSince1970:epochTime];
