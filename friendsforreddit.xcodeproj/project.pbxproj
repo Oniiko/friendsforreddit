@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		434E62B01CBE14310025E61B /* ModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 434E62AF1CBE14310025E61B /* ModalWebViewController.m */; };
+		43C079A61CB6C42400DFC335 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 43C079A51CB6C42400DFC335 /* Models */; };
 		E72D5EF21CB40A960011EE82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF11CB40A960011EE82 /* main.m */; };
 		E72D5EF51CB40A960011EE82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF41CB40A960011EE82 /* AppDelegate.m */; };
 		E72D5EF81CB40A960011EE82 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF71CB40A960011EE82 /* FirstViewController.m */; };
@@ -45,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		434E62AE1CBE13DD0025E61B /* ModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalWebViewController.h; sourceTree = "<group>"; };
+		434E62AF1CBE14310025E61B /* ModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalWebViewController.m; sourceTree = "<group>"; };
+		43C079A51CB6C42400DFC335 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		E72D5EED1CB40A960011EE82 /* friendsforreddit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = friendsforreddit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E72D5EF11CB40A960011EE82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E72D5EF31CB40A960011EE82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 				E7BD28481CC7E0B9002A8B53 /* SVPullToRefresh */,
 				E72D5F291CB4231A0011EE82 /* Constants.h */,
 				E72D5F2A1CB4231A0011EE82 /* Constants.m */,
+				43C079A51CB6C42400DFC335 /* Models */,
 				E72D5EFC1CB40A960011EE82 /* Main.storyboard */,
 				E7E50DAA1CC53B8D00C14476 /* CommentTableViewCell.h */,
 				E7E50DAB1CC53B8D00C14476 /* CommentTableViewCell.m */,
@@ -313,6 +319,7 @@
 			files = (
 				E72D5F031CB40A960011EE82 /* LaunchScreen.storyboard in Resources */,
 				E72D5F001CB40A960011EE82 /* Assets.xcassets in Resources */,
+				43C079A61CB6C42400DFC335 /* Models in Resources */,
 				E72D5EFE1CB40A960011EE82 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +357,7 @@
 				E7BD28461CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				E72D5F281CB41F9B0011EE82 /* RedditAPI.m in Sources */,
 				E72D5EF21CB40A960011EE82 /* main.m in Sources */,
+				434E62B01CBE14310025E61B /* ModalWebViewController.m in Sources */,
 				E72D5F2B1CB4231A0011EE82 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,7 +449,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -478,7 +486,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -16,6 +16,8 @@
 @synthesize refreshToken;
 
 
+#import "RedditAPI.h"
+#import "Constants.h"
 
 static RedditAPI *sharedRedditAPI = nil;    // static instance variable
 
@@ -63,7 +65,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     }
     
     NSLog(@"Making api request to reddit");
-
+    
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request
                                     completionHandler:^(NSData *data,
                                     NSURLResponse *response,
@@ -99,7 +101,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
                WithCompletion:(NSDataHandler) completion{
     
     [self makeAPIRequestWithURL:url Method:method SendData:nil WithCompletion:completion];
-
+    
 }
 
 
@@ -196,7 +198,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     NSURL *url = [[NSURL alloc] initWithString: urlString];
     [self makeAPIRequestWithURL:url Method:@"GET" WithCompletion:^(NSData *data, NSError *error){
         
-
+        
         NSError *serializationError = nil;
         NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                              options:NSJSONReadingAllowFragments
@@ -227,13 +229,13 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     NSURL *url = [[NSURL alloc] initWithString: urlString];
     
     NSString *jsonString = [[NSString alloc] initWithFormat:@"{\"name\":\"%@\"}",userName];
-
+    
     NSData *sendData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     
     [self makeAPIRequestWithURL:url Method:@"PUT" SendData:sendData WithCompletion:^(NSData *data, NSError *error){
         NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     }];
-
+    
 }
 
 /*
@@ -244,7 +246,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
  */
 - (void) removeFriendWithName: (NSString *)userName{
     NSString *urlString = [[NSString alloc] initWithFormat:@"%@api/v1/me/friends/%@",BaseURL,userName];
-    NSURL *url = [[NSURL alloc] initWithString: urlString]; 
+    NSURL *url = [[NSURL alloc] initWithString: urlString];
     
     [self makeAPIRequestWithURL:url Method:@"DELETE" SendData:nil WithCompletion:^(NSData *data, NSError *error){
         NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
