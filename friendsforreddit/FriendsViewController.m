@@ -17,19 +17,15 @@
 @synthesize friends;
 @synthesize tableView;
 
+RedditAPI *api;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    RedditAPI *api = [RedditAPI sharedRedditAPI];
+    api = [RedditAPI sharedRedditAPI];
     self.friends = [[NSMutableArray alloc] init];
     
-    [api getFriendsWithCompletion:^(NSArray *returnedFriends){
-        [friends addObjectsFromArray:returnedFriends];
-        
-        //Reload data on the UI thread
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [tableView reloadData];
-        });
-    }];
+    [self loadFriends];
+
 }
 
 
@@ -39,6 +35,22 @@
 }
 
 
+/*
+ * Make asynchronus API request for friends, replace any entries in friends array, reload table
+ */
+- (void) loadFriends{
+    [api getFriendsWithCompletion:^(NSArray *returnedFriends, NSError *error){
+        [friends removeAllObjects];
+        
+        NSLog([error localizedDescription]);
+        [friends addObjectsFromArray:returnedFriends];
+        
+        //Reload data on the UI thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [tableView reloadData];
+        });
+    }];
+}
 
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -86,10 +98,9 @@
     UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes"
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action){
-                                                          //TODO: API Request
+                                                          [api removeFriendWithName: user.username];
                                                           
-                                                          //Reload table data
-                                                          [tableView reloadData];
+                                                          [self loadFriends];
                                                       }];
     
     UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No"
