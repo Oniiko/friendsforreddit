@@ -13,6 +13,7 @@
 
     @property (nonatomic, copy, readonly) NSString *title;
     @property (nonatomic, copy, readonly) NSString *author;
+    @property (nonatomic, copy, readonly) NSString *post_id;
     @property (nonatomic, copy, readonly) NSDate *created;
     @property (nonatomic, copy, readonly) NSString *selftext;
     @property (nonatomic, copy, readonly) NSString *subreddit;
