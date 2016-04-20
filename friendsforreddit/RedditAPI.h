@@ -12,8 +12,8 @@
 #import "Models/User.h"
 
 
-typedef void (^NSDataHandler)(NSData *);
-typedef void (^NSArrayHandler)(NSArray *);
+typedef void (^NSDataHandler)(NSData *, NSError *);
+typedef void (^NSArrayHandler)(NSArray *, NSError *);
 
 
 @interface RedditAPI : NSObject
