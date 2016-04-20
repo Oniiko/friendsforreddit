@@ -142,12 +142,8 @@
 				E72D5F261CB41F9B0011EE82 /* RedditAPI.h */,
 				E72D5F271CB41F9B0011EE82 /* RedditAPI.m */,
 				E7D9A2951CBD572100B308A5 /* FriendsViewController.h */,
-				E7BD28411CC7DD8C002A8B53 /* SVPullToRefresh.h */,
-				E7BD28421CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.h */,
-				E7BD28431CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m */,
-				E7BD28441CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.h */,
-				E7BD28451CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m */,
 				E7D9A2961CBD572100B308A5 /* FriendsViewController.m */,
+				E7BD28481CC7E0B9002A8B53 /* SVPullToRefresh */,
 				E72D5F291CB4231A0011EE82 /* Constants.h */,
 				E72D5F2A1CB4231A0011EE82 /* Constants.m */,
 				E72D5EFC1CB40A960011EE82 /* Main.storyboard */,
@@ -198,6 +194,18 @@
 				E7942A0A1CB94BD200F31CA2 /* Post.h */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E7BD28481CC7E0B9002A8B53 /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				E7BD28411CC7DD8C002A8B53 /* SVPullToRefresh.h */,
+				E7BD28421CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.h */,
+				E7BD28431CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m */,
+				E7BD28441CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.h */,
+				E7BD28451CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m */,
+			);
+			name = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

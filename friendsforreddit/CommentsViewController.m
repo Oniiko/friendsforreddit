@@ -7,7 +7,7 @@
 //
 
 #import "CommentsViewController.h"
-#import "SVPullToRefresh/UIScrollView+SVInfiniteScrolling.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
 
 @interface CommentsViewController ()
 @property RedditAPI *api;
@@ -39,6 +39,23 @@
     
 }
 
+- (void) displayErrorMessageForError: (NSError *) error{
+    NSString *errorMessage = [[NSString alloc] initWithFormat:@"Something went wrong\nError Code:%ld", [error code]];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                   message:errorMessage
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Okay"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action){}];
+    
+    [alert addAction:action];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
 
 - (void) loadComments{
     self.loadingData = YES;
@@ -48,6 +65,15 @@
     [api getCommentsAfterCommentID:lastCommentID InOrder:@"HOT" Completion:^(NSArray *returnedFriends, NSError *error){
 
         NSLog([error localizedDescription]);
+        
+        if(error){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self displayErrorMessageForError:error];
+            });
+            
+            return;
+            
+        }
         
         //No more data, stop infinite scrolling
         if (returnedFriends.count == 0){
