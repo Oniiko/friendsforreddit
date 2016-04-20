@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E703CF011CC7C8F500B5D1F4 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = E703CEFE1CC7C8F500B5D1F4 /* UIScrollView+SVInfiniteScrolling.m */; };
-		E703CF021CC7C8F500B5D1F4 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E703CF001CC7C8F500B5D1F4 /* UIScrollView+SVPullToRefresh.m */; };
 		E72D5EF21CB40A960011EE82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF11CB40A960011EE82 /* main.m */; };
 		E72D5EF51CB40A960011EE82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF41CB40A960011EE82 /* AppDelegate.m */; };
 		E72D5EF81CB40A960011EE82 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF71CB40A960011EE82 /* FirstViewController.m */; };
@@ -23,6 +21,8 @@
 		E7942A0B1CB94BD200F31CA2 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = E7942A061CB94BD200F31CA2 /* Comment.m */; };
 		E7942A0C1CB94BD200F31CA2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E7942A081CB94BD200F31CA2 /* User.m */; };
 		E7942A0D1CB94BD200F31CA2 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = E7942A091CB94BD200F31CA2 /* Post.m */; };
+		E7BD28461CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD28431CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m */; };
+		E7BD28471CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD28451CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m */; };
 		E7D9A2971CBD572100B308A5 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D9A2961CBD572100B308A5 /* FriendsViewController.m */; };
 		E7E50DAC1CC53B8D00C14476 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E50DAB1CC53B8D00C14476 /* CommentTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -45,11 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E703CEFC1CC7C8F500B5D1F4 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
-		E703CEFD1CC7C8F500B5D1F4 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
-		E703CEFE1CC7C8F500B5D1F4 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
-		E703CEFF1CC7C8F500B5D1F4 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
-		E703CF001CC7C8F500B5D1F4 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		E72D5EED1CB40A960011EE82 /* friendsforreddit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = friendsforreddit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E72D5EF11CB40A960011EE82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E72D5EF31CB40A960011EE82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +73,11 @@
 		E7942A081CB94BD200F31CA2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E7942A091CB94BD200F31CA2 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		E7942A0A1CB94BD200F31CA2 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		E7BD28411CC7DD8C002A8B53 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		E7BD28421CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		E7BD28431CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		E7BD28441CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		E7BD28451CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		E7D9A2951CBD572100B308A5 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		E7D9A2961CBD572100B308A5 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		E7E50DAA1CC53B8D00C14476 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
@@ -109,18 +109,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E703CEFB1CC7C8F500B5D1F4 /* SVPullToRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				E703CEFC1CC7C8F500B5D1F4 /* SVPullToRefresh.h */,
-				E703CEFD1CC7C8F500B5D1F4 /* UIScrollView+SVInfiniteScrolling.h */,
-				E703CEFE1CC7C8F500B5D1F4 /* UIScrollView+SVInfiniteScrolling.m */,
-				E703CEFF1CC7C8F500B5D1F4 /* UIScrollView+SVPullToRefresh.h */,
-				E703CF001CC7C8F500B5D1F4 /* UIScrollView+SVPullToRefresh.m */,
-			);
-			path = SVPullToRefresh;
-			sourceTree = "<group>";
-		};
 		E72D5EE41CB40A960011EE82 = {
 			isa = PBXGroup;
 			children = (
@@ -146,7 +134,6 @@
 			children = (
 				E72D5EF31CB40A960011EE82 /* AppDelegate.h */,
 				E72D5EF41CB40A960011EE82 /* AppDelegate.m */,
-				E703CEFB1CC7C8F500B5D1F4 /* SVPullToRefresh */,
 				E7942A041CB94BD200F31CA2 /* Models */,
 				E72D5EF61CB40A960011EE82 /* FirstViewController.h */,
 				E72D5EF71CB40A960011EE82 /* FirstViewController.m */,
@@ -155,6 +142,11 @@
 				E72D5F261CB41F9B0011EE82 /* RedditAPI.h */,
 				E72D5F271CB41F9B0011EE82 /* RedditAPI.m */,
 				E7D9A2951CBD572100B308A5 /* FriendsViewController.h */,
+				E7BD28411CC7DD8C002A8B53 /* SVPullToRefresh.h */,
+				E7BD28421CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.h */,
+				E7BD28431CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m */,
+				E7BD28441CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.h */,
+				E7BD28451CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m */,
 				E7D9A2961CBD572100B308A5 /* FriendsViewController.m */,
 				E72D5F291CB4231A0011EE82 /* Constants.h */,
 				E72D5F2A1CB4231A0011EE82 /* Constants.m */,
@@ -346,8 +338,8 @@
 				E7942A0D1CB94BD200F31CA2 /* Post.m in Sources */,
 				E7E50DAC1CC53B8D00C14476 /* CommentTableViewCell.m in Sources */,
 				E72D5EF81CB40A960011EE82 /* FirstViewController.m in Sources */,
-				E703CF021CC7C8F500B5D1F4 /* UIScrollView+SVPullToRefresh.m in Sources */,
-				E703CF011CC7C8F500B5D1F4 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				E7BD28471CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m in Sources */,
+				E7BD28461CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				E72D5F281CB41F9B0011EE82 /* RedditAPI.m in Sources */,
 				E72D5EF21CB40A960011EE82 /* main.m in Sources */,
 				E72D5F2B1CB4231A0011EE82 /* Constants.m in Sources */,
