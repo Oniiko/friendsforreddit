@@ -45,7 +45,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     
     ///////////////FOR TESTING PURPOSES ///////////////
     ///////////////Must be updated hourly//////////////
-    accessToken = @"35286854-I8w2HuTePdzffe2Z3otbcIR4Qbo";
+    accessToken = @"35286854-vDyXs_fegh5a1iCexL1A2I2jW6M";
     ///////////////////////////////////////////////////
     
     
@@ -78,7 +78,6 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
                                             NSLog(@"http response code %ld", urlResponse.statusCode);
                                             long statusCode = urlResponse.statusCode;
                                             
-                                            
                                             if (statusCode == 401){
                                                 //Bad Authorization, refresh token
                                             } else {
@@ -87,8 +86,9 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
                                                                                  userInfo:@{@"response":response}];
                                             }
                                             
-                                            completion(data, error);
                                         }
+                                        
+                                        completion(data, error);
                                     }];
     [task resume];
     
@@ -165,15 +165,18 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     
     [self makeAPIRequestWithURL:url Method:@"GET" WithCompletion:^(NSData *data, NSError *error) {
         NSError *serializationError = nil;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
-                                                             options:NSJSONReadingAllowFragments
-                                                               error:&serializationError];
-        
         NSMutableArray *commentArray =  [[NSMutableArray alloc] init];
+        if (!error){
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                 options:NSJSONReadingAllowFragments
+                                                                   error:&serializationError];
         
-        for (NSDictionary *child in json[@"data"][@"children"]){
-            Comment *comment = [[Comment alloc] initWithDictionary:child[@"data"]];
-            [commentArray addObject:comment];
+            
+        
+            for (NSDictionary *child in json[@"data"][@"children"]){
+                Comment *comment = [[Comment alloc] initWithDictionary:child[@"data"]];
+                [commentArray addObject:comment];
+            }
         }
         
         completion(commentArray, error);
