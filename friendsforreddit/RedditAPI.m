@@ -47,7 +47,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     
     ///////////////FOR TESTING PURPOSES ///////////////
     ///////////////Must be updated hourly//////////////
-    accessToken = @"35286854-vDyXs_fegh5a1iCexL1A2I2jW6M";
+    accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"];
     ///////////////////////////////////////////////////
     
     
