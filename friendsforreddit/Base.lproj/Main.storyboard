@@ -18,18 +18,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IFX-by-9DP">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="First View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD">
+                                <rect key="frame" x="221" y="279" width="158" height="42"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loaded by FirstViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
+                                <rect key="frame" x="203" y="329" width="195" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5l-3d-VXL">
+                                <rect key="frame" x="270" y="368" width="38" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <segue destination="Jgh-SH-fte" kind="presentation" id="2Uw-9m-fJe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="webView" destination="uAo-XE-nEZ" id="ZXD-QW-oJB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="684" y="-646"/>
+            <point key="canvasLocation" x="756" y="-318"/>
+        </scene>
+        <!--Modal Web View Controller-->
+        <scene sceneID="2i6-OO-ymf">
+            <objects>
+                <viewController id="Jgh-SH-fte" customClass="ModalWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jYO-gf-d85"/>
+                        <viewControllerLayoutGuide type="bottom" id="df7-7U-E3s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="l6V-Zz-GrA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uAo-XE-nEZ">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" red="0.36078431372549019" green="0.38823529411764707" blue="0.40392156862745099" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="uAo-XE-nEZ" id="3BR-39-Tkv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OEr-Wh-Vim" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1478" y="-306"/>
         </scene>
         <!--CommentsView-->
         <scene sceneID="wg7-f3-ORb">
@@ -93,8 +139,8 @@
                                                 <constraint firstItem="TRX-ml-8dP" firstAttribute="trailing" secondItem="Pdj-rk-aIf" secondAttribute="trailingMargin" id="95S-3I-UTi"/>
                                                 <constraint firstItem="GDG-IJ-PBh" firstAttribute="top" secondItem="zNZ-mD-odL" secondAttribute="bottom" constant="-10" id="AxP-0N-6oj"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="N1A-XB-0h9" secondAttribute="trailing" id="Em8-Fh-dgb"/>
-                                                <constraint firstItem="Nxk-pI-fdL" firstAttribute="leading" secondItem="Pdj-rk-aIf" secondAttribute="leadingMargin" constant="5" id="VcM-Qu-4Vr"/>
-                                                <constraint firstItem="Nxk-pI-fdL" firstAttribute="trailing" secondItem="Pdj-rk-aIf" secondAttribute="trailingMargin" constant="5" id="ZUg-BR-weF"/>
+                                                <constraint firstItem="Nxk-pI-fdL" firstAttribute="leading" secondItem="Pdj-rk-aIf" secondAttribute="leadingMargin" id="VcM-Qu-4Vr"/>
+                                                <constraint firstItem="Nxk-pI-fdL" firstAttribute="trailing" secondItem="Pdj-rk-aIf" secondAttribute="trailingMargin" id="ZUg-BR-weF"/>
                                                 <constraint firstItem="zNZ-mD-odL" firstAttribute="top" secondItem="N1A-XB-0h9" secondAttribute="bottom" constant="-10" id="Zpk-1q-qIC"/>
                                                 <constraint firstItem="zNZ-mD-odL" firstAttribute="leading" secondItem="Pdj-rk-aIf" secondAttribute="leadingMargin" id="aQL-7J-pZZ"/>
                                                 <constraint firstItem="TRX-ml-8dP" firstAttribute="top" secondItem="N1A-XB-0h9" secondAttribute="bottom" constant="3" id="agQ-dE-hj6"/>
@@ -134,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="26"/>
+            <point key="canvasLocation" x="736" y="378"/>
         </scene>
         <!--FriendsView-->
         <scene sceneID="61Y-zg-BSj">
@@ -213,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isL-uA-ati" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="372" y="774"/>
+            <point key="canvasLocation" x="272" y="938"/>
         </scene>
         <!--AddFriend-->
         <scene sceneID="lbO-M3-OOi">
@@ -246,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZQ-Gv-dpY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066" y="774"/>
+            <point key="canvasLocation" x="982" y="1110"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
