@@ -11,7 +11,7 @@
 
 @interface Post : NSObject
 
-    @property (nonatomic, copy, readonly) NSString *title;
+    @property (nonatomic, copy, readonly) NSString *link_title;
     @property (nonatomic, copy, readonly) NSString *author;
     @property (nonatomic, copy, readonly) NSString *post_id;
     @property (nonatomic, copy, readonly) NSDate *created;
@@ -21,6 +21,9 @@
     @property (nonatomic, assign, readonly) NSUInteger num_comments;
     @property (nonatomic, assign, readonly) NSUInteger score;
     @property (nonatomic, assign, readonly) CGFloat upvoteRatio;
+    @property (nonatomic, copy, readonly) NSURL *thumbnail_url;
+    @property (nonatomic, copy, readonly) UIImage *thumbnail;
+    @property (nonatomic, readonly) BOOL isSelfPost;
 
     //If voted on by logged-in user
     @property (nonatomic, readonly) BOOL likes;

@@ -20,12 +20,18 @@
 		E72D5F191CB40A970011EE82 /* friendsforredditUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5F181CB40A970011EE82 /* friendsforredditUITests.m */; };
 		E72D5F281CB41F9B0011EE82 /* RedditAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5F271CB41F9B0011EE82 /* RedditAPI.m */; };
 		E72D5F2B1CB4231A0011EE82 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5F2A1CB4231A0011EE82 /* Constants.m */; };
+		E73FDCFB1CC93CA8005089C4 /* PostViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = E73FDCFA1CC93CA8005089C4 /* PostViewContoller.m */; };
+		E777FCD81CCFC082000485A9 /* PostCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E777FCD71CCFC082000485A9 /* PostCommentViewController.m */; };
+		E777FCDB1CCFD3C4000485A9 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E777FCDA1CCFD3C4000485A9 /* AddFriendViewController.m */; };
+		E777FCDE1CCFE89D000485A9 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E777FCDD1CCFE89D000485A9 /* PostDetailViewController.m */; };
 		E7942A0B1CB94BD200F31CA2 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = E7942A061CB94BD200F31CA2 /* Comment.m */; };
 		E7942A0C1CB94BD200F31CA2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E7942A081CB94BD200F31CA2 /* User.m */; };
 		E7942A0D1CB94BD200F31CA2 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = E7942A091CB94BD200F31CA2 /* Post.m */; };
 		E7BD28461CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD28431CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m */; };
 		E7BD28471CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD28451CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m */; };
 		E7D9A2971CBD572100B308A5 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D9A2961CBD572100B308A5 /* FriendsViewController.m */; };
+		E7DC3B9F1CC93DE200919EE5 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DC3B9E1CC93DE200919EE5 /* PostTableViewCell.m */; };
+		E7DC7B411CCE71C5005BB6D2 /* PostWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DC7B401CCE71C5005BB6D2 /* PostWebViewController.m */; };
 		E7E50DAC1CC53B8D00C14476 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E50DAB1CC53B8D00C14476 /* CommentTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +78,14 @@
 		E72D5F271CB41F9B0011EE82 /* RedditAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedditAPI.m; sourceTree = "<group>"; };
 		E72D5F291CB4231A0011EE82 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E72D5F2A1CB4231A0011EE82 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		E73FDCF91CC93CA8005089C4 /* PostViewContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewContoller.h; sourceTree = "<group>"; };
+		E73FDCFA1CC93CA8005089C4 /* PostViewContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewContoller.m; sourceTree = "<group>"; };
+		E777FCD61CCFC082000485A9 /* PostCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCommentViewController.h; sourceTree = "<group>"; };
+		E777FCD71CCFC082000485A9 /* PostCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCommentViewController.m; sourceTree = "<group>"; };
+		E777FCD91CCFD3C4000485A9 /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
+		E777FCDA1CCFD3C4000485A9 /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
+		E777FCDC1CCFE89D000485A9 /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
+		E777FCDD1CCFE89D000485A9 /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 		E7942A051CB94BD200F31CA2 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		E7942A061CB94BD200F31CA2 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		E7942A071CB94BD200F31CA2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -85,6 +99,10 @@
 		E7BD28451CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		E7D9A2951CBD572100B308A5 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		E7D9A2961CBD572100B308A5 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		E7DC3B9D1CC93DE200919EE5 /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
+		E7DC3B9E1CC93DE200919EE5 /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
+		E7DC7B3F1CCE71C5005BB6D2 /* PostWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostWebViewController.h; sourceTree = "<group>"; };
+		E7DC7B401CCE71C5005BB6D2 /* PostWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostWebViewController.m; sourceTree = "<group>"; };
 		E7E50DAA1CC53B8D00C14476 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		E7E50DAB1CC53B8D00C14476 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,14 +160,26 @@
 				E7942A041CB94BD200F31CA2 /* Models */,
 				E72D5EF61CB40A960011EE82 /* FirstViewController.h */,
 				E72D5EF71CB40A960011EE82 /* FirstViewController.m */,
-				E72D5EF91CB40A960011EE82 /* CommentsViewController.h */,
-				E72D5EFA1CB40A960011EE82 /* CommentsViewController.m */,
 				434E62AE1CBE13DD0025E61B /* ModalWebViewController.h */,
 				434E62AF1CBE14310025E61B /* ModalWebViewController.m */,
-				E72D5EF91CB40A960011EE82 /* SecondViewController.h */,
-				E72D5EFA1CB40A960011EE82 /* SecondViewController.m */,
+				E73FDCF91CC93CA8005089C4 /* PostViewContoller.h */,
+				E73FDCFA1CC93CA8005089C4 /* PostViewContoller.m */,
+				E7DC3B9D1CC93DE200919EE5 /* PostTableViewCell.h */,
+				E7DC3B9E1CC93DE200919EE5 /* PostTableViewCell.m */,
+				E7DC7B3F1CCE71C5005BB6D2 /* PostWebViewController.h */,
+				E7DC7B401CCE71C5005BB6D2 /* PostWebViewController.m */,
+				E777FCDC1CCFE89D000485A9 /* PostDetailViewController.h */,
+				E777FCDD1CCFE89D000485A9 /* PostDetailViewController.m */,
+				E72D5EF91CB40A960011EE82 /* CommentsViewController.h */,
+				E72D5EFA1CB40A960011EE82 /* CommentsViewController.m */,
+				E7E50DAA1CC53B8D00C14476 /* CommentTableViewCell.h */,
+				E7E50DAB1CC53B8D00C14476 /* CommentTableViewCell.m */,
+				E777FCD61CCFC082000485A9 /* PostCommentViewController.h */,
+				E777FCD71CCFC082000485A9 /* PostCommentViewController.m */,
 				E72D5F261CB41F9B0011EE82 /* RedditAPI.h */,
 				E72D5F271CB41F9B0011EE82 /* RedditAPI.m */,
+				E777FCD91CCFD3C4000485A9 /* AddFriendViewController.h */,
+				E777FCDA1CCFD3C4000485A9 /* AddFriendViewController.m */,
 				E7D9A2951CBD572100B308A5 /* FriendsViewController.h */,
 				E7D9A2961CBD572100B308A5 /* FriendsViewController.m */,
 				E7BD28481CC7E0B9002A8B53 /* SVPullToRefresh */,
@@ -157,8 +187,6 @@
 				E72D5F2A1CB4231A0011EE82 /* Constants.m */,
 				43C079A51CB6C42400DFC335 /* Models */,
 				E72D5EFC1CB40A960011EE82 /* Main.storyboard */,
-				E7E50DAA1CC53B8D00C14476 /* CommentTableViewCell.h */,
-				E7E50DAB1CC53B8D00C14476 /* CommentTableViewCell.m */,
 				E72D5EFF1CB40A960011EE82 /* Assets.xcassets */,
 				E72D5F011CB40A960011EE82 /* LaunchScreen.storyboard */,
 				E72D5F041CB40A960011EE82 /* Info.plist */,
@@ -350,17 +378,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7D9A2971CBD572100B308A5 /* FriendsViewController.m in Sources */,
+				E777FCDE1CCFE89D000485A9 /* PostDetailViewController.m in Sources */,
 				E7942A0C1CB94BD200F31CA2 /* User.m in Sources */,
 				E7942A0B1CB94BD200F31CA2 /* Comment.m in Sources */,
+				E7DC7B411CCE71C5005BB6D2 /* PostWebViewController.m in Sources */,
 				E72D5EFB1CB40A960011EE82 /* CommentsViewController.m in Sources */,
 				E72D5EF51CB40A960011EE82 /* AppDelegate.m in Sources */,
+				E777FCDB1CCFD3C4000485A9 /* AddFriendViewController.m in Sources */,
+				E777FCD81CCFC082000485A9 /* PostCommentViewController.m in Sources */,
 				E7942A0D1CB94BD200F31CA2 /* Post.m in Sources */,
 				E7E50DAC1CC53B8D00C14476 /* CommentTableViewCell.m in Sources */,
+				E7DC3B9F1CC93DE200919EE5 /* PostTableViewCell.m in Sources */,
 				E72D5EF81CB40A960011EE82 /* FirstViewController.m in Sources */,
 				E7BD28471CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E7BD28461CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				E72D5F281CB41F9B0011EE82 /* RedditAPI.m in Sources */,
 				E72D5EF21CB40A960011EE82 /* main.m in Sources */,
+				E73FDCFB1CC93CA8005089C4 /* PostViewContoller.m in Sources */,
 				434E62B01CBE14310025E61B /* ModalWebViewController.m in Sources */,
 				E72D5F2B1CB4231A0011EE82 /* Constants.m in Sources */,
 			);

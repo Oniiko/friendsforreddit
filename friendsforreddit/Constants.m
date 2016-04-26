@@ -15,6 +15,7 @@
  NSString * const BaseAuthorizationURL = @"https://www.reddit.com/api/v1/authorize.compact";
  NSString * const BaseAccessURL = @"https://www.reddit.com/api/v1/access_token/";
  NSString * const UserAgent = @"FriendsForReddit/0.1 by friends_for_reddit";
+ const int ObjectsPerRequest = 25;
 
 
 @end

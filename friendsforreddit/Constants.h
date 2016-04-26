@@ -15,6 +15,7 @@ extern NSString * const ClientID; //Our client ID
 extern NSString * const BaseAuthorizationURL; //For redirecting user to authorization site
 extern NSString * const BaseAccessURL; //For obtaining an access token
 extern NSString * const UserAgent;
+extern int const ObjectsPerRequest;
 
 
 @end

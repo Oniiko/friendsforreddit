@@ -33,7 +33,7 @@
 * Prompts the user to login to Reddit and give permission to FriendsForReddit
 */
 - (void)loadUIWebView {
-    NSURL *authorizationURL = [NSURL URLWithString: [NSString stringWithFormat: @"%@?client_id=%@&response_type=code&state=TEST&redirect_uri=friendsforreddit://response&duration=permanent&scope=%@", BaseAuthorizationURL, ClientID, @"read+vote+submit"]];
+    NSURL *authorizationURL = [NSURL URLWithString: [NSString stringWithFormat: @"%@?client_id=%@&response_type=code&state=TEST&redirect_uri=friendsforreddit://response&duration=permanent&scope=%@", BaseAuthorizationURL, ClientID, @"subscribe+read+vote+submit"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:authorizationURL];
     [self.webView loadRequest:request];
 }

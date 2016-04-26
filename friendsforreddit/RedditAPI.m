@@ -82,10 +82,10 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
                                             
                                             if (statusCode == 401){
                                                 //Bad Authorization, refresh token
-                                            } else {
-                                                NSError *error = [NSError errorWithDomain:@"HTTP Error"
-                                                                                     code:statusCode
-                                                                                 userInfo:@{@"response":response}];
+                                            } else if (statusCode >= 400 ) {
+                                                error = [NSError errorWithDomain:@"HTTP Error"
+                                                                            code:statusCode
+                                                                        userInfo:@{@"response":response}];
                                             }
                                             
                                         }
@@ -118,7 +118,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     
     
     if (postId){
-        [urlString appendFormat:@"/?count=25&after=%@",postId];
+        [urlString appendFormat:@"/?count=%d&after=t1_%@",ObjectsPerRequest, postId];
     }
     
     [urlString appendString:@".json"];
@@ -158,7 +158,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@/r/friends/comments",BaseURL];
     
     if (commentId){
-        [urlString appendFormat:@"/?count=25&after=t1_%@",commentId];
+        [urlString appendFormat:@"/?count=%d&after=t1_%@",ObjectsPerRequest, commentId];
     }
     
     NSLog(urlString);
@@ -198,20 +198,22 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     NSURL *url = [[NSURL alloc] initWithString: urlString];
     [self makeAPIRequestWithURL:url Method:@"GET" WithCompletion:^(NSData *data, NSError *error){
         
-        
-        NSError *serializationError = nil;
-        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
-                                                             options:NSJSONReadingAllowFragments
-                                                               error:&serializationError];
-        
-        //First item of the array is the friends listing
-        NSDictionary *json = jsonArray[0];
-        
         NSMutableArray *userArray =  [[NSMutableArray alloc] init];
-        
-        for(NSDictionary *child in json[@"data"][@"children"]){
-            User *friend = [[User alloc] initWithName:child[@"name"]];
-            [userArray addObject:friend];
+        if(!error){
+            NSError *serializationError = nil;
+            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                 options:NSJSONReadingAllowFragments
+                                                                   error:&serializationError];
+            
+            //First item of the array is the friends listing
+            NSDictionary *json = jsonArray[0];
+            
+
+            
+            for(NSDictionary *child in json[@"data"][@"children"]){
+                User *friend = [[User alloc] initWithName:child[@"name"]];
+                [userArray addObject:friend];
+            }
         }
         completion(userArray, error);
 
@@ -224,7 +226,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
  *
  * userName: A valid user on reddit
  */
-- (void) addFriendWithName:(NSString *)userName{
+- (void) addFriendWithName:(NSString *)userName OnError:(NSErrorHandler)errorHandler{
     NSString *urlString = [[NSString alloc] initWithFormat:@"%@api/v1/me/friends/%@",BaseURL,userName];
     NSURL *url = [[NSURL alloc] initWithString: urlString];
     
@@ -234,6 +236,10 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     
     [self makeAPIRequestWithURL:url Method:@"PUT" SendData:sendData WithCompletion:^(NSData *data, NSError *error){
         NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        
+        if (error){
+            errorHandler(error);
+        }
     }];
     
 }
@@ -261,7 +267,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
  * postID: A valid post or comment ID
  * commentText: Raw markdown comment text
  */
-- (void) replyToPostWithID:(NSString *)postID WithText:(NSString *)commentText{
+- (void) replyToPostWithID:(NSString *)postID Type:(NSString *)parentType WithText:(NSString *)commentText{
     NSString *urlString = [[NSString alloc] initWithFormat:@"%@api/comment",BaseURL];
     NSURL *url = [[NSURL alloc] initWithString: urlString];
     

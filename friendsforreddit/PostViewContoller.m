@@ -1,69 +1,57 @@
 //
-//  SecondViewController.m
+//  PostViewContoller.m
 //  friendsforreddit
 //
-//  Created by Gregory Johnson on 4/5/16.
+//  Created by Gregory Johnson on 4/21/16.
 //  Copyright © 2016 nyu.edu. All rights reserved.
 //
 
-#import "CommentsViewController.h"
+#import "PostViewContoller.h"
+#import "RedditAPI.h"
+#import "PostWebViewController.h"
+#import "PostCommentViewController.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
 
-@interface CommentsViewController ()
+@interface PostViewContoller ()
 @property RedditAPI *api;
-@property (nonatomic) BOOL loadingData;
+
 @end
 
-@implementation CommentsViewController
+@implementation PostViewContoller
 
-@synthesize comments;
-@synthesize tableView;
+@synthesize posts;
 @synthesize api;
-@synthesize loadingData;
-
+@synthesize tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
+    
+    self.posts = [[NSMutableArray alloc] init];
     api = [RedditAPI sharedRedditAPI];
-    self.comments = [[NSMutableArray alloc] init];
+    
     
     self.tableView.estimatedRowHeight = 150;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
-    [self loadComments];
+    [self loadPosts];
     
     __weak typeof(self) weakSelf = self;
     [self.tableView addInfiniteScrollingWithActionHandler:^(void){
-        [weakSelf loadComments];
+        [weakSelf loadPosts];
     }];
+}
+
+- (void) displayErrorMessageForError:(NSError *) error{
     
 }
 
-- (void) displayErrorMessageForError: (NSError *) error{
-    NSString *errorMessage = [[NSString alloc] initWithFormat:@"Something went wrong\nError Code:%ld", [error code]];
+- (void) loadPosts{
+    NSString *lastPostID = [self.posts.lastObject post_id];
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                   message:errorMessage
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Okay"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction *action){}];
-    
-    [alert addAction:action];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-    
-}
-
-
-- (void) loadComments{
-    self.loadingData = YES;
-    NSString *lastCommentID = [self.comments.lastObject comment_id];
-    NSLog(@"last commentID: %@", lastCommentID);
-    
-    [api getCommentsAfterCommentID:lastCommentID InOrder:@"HOT" Completion:^(NSArray *returnedComments, NSError *error){
-
+    [api getPostsAfterPostID:lastPostID InOrder:@"HOT" Completion:^(NSArray *returnedPosts, NSError *error){
+        
         NSLog([error localizedDescription]);
         
         if(error){
@@ -76,12 +64,12 @@
         }
         
         //No more data, stop infinite scrolling
-        if (returnedComments.count == 0){
+        if (returnedPosts.count == 0){
             self.tableView.showsInfiniteScrolling = NO;
             return;
         }
         
-        [comments addObjectsFromArray:returnedComments];
+        [posts addObjectsFromArray:returnedPosts];
         
         //Reload data on the UI thread
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -89,9 +77,8 @@
         });
         
         [self.tableView.infiniteScrollingView stopAnimating];
+        
     }];
-    
-    self.loadingData = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,25 +86,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.comments count];
+    return [self.posts count];
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier =@"commentCell";
+    static NSString *CellIdentifier =@"postCell";
     
-    CommentTableViewCell *cell = [tableView
-                             dequeueReusableCellWithIdentifier:CellIdentifier];
+    PostTableViewCell *cell = [tableView
+                                  dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[CommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.postTitle.text = [[self.comments objectAtIndex:indexPath.row] link_title];
-    cell.commentText.text = [[self.comments objectAtIndex:indexPath.row] body];
-    cell.commentAuthor.text = [[self.comments objectAtIndex:indexPath.row] author];
-    cell.subreddit.text = [[NSString alloc] initWithFormat:@"/r/%@", [[self.comments objectAtIndex:indexPath.row] subreddit]];
-
+    cell.title.text = [[self.posts objectAtIndex:indexPath.row] link_title];
+    cell.postAuthor.text = [[self.posts objectAtIndex:indexPath.row] author];
+    cell.subreddit.text = [[NSString alloc] initWithFormat:@"/r/%@", [[self.posts objectAtIndex:indexPath.row] subreddit]];
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     
@@ -133,7 +119,7 @@
  */
 -(void) handleLongPress: (UILongPressGestureRecognizer *) gestureRecognizer{
     
-    NSString *message = @"Would you like to reply to this comment?";
+    NSString *message = @"Would you like to reply to this post?";
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reply?"
                                                                    message:message
@@ -141,7 +127,7 @@
     UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes"
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action){
-                                                          [self performSegueWithIdentifier:@"ReplyCommentSegue" sender:self];
+                                                          [self performSegueWithIdentifier:@"PostCommentSegue" sender:self];
                                                       }];
     
     UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No"
@@ -153,5 +139,42 @@
     [alert addAction:noAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    long index = [self.tableView indexPathForSelectedRow].row;
+
+    //Switch between webview for external links and post detail for self posts
+    if ([posts[index] isSelfPost]){
+        //segue to post detail
+    } else {
+        NSLog(@"Segue to webview");
+        [self performSegueWithIdentifier:@"PostWebViewSegue" sender:self];
+    }
+}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    long index = [self.tableView indexPathForSelectedRow].row;
+    
+    if ([posts[index] isSelfPost]){
+        NSLog(@"is self post");
+    } else {
+        NSLog(@"not self post");
+    }
+    
+    //Figure out where we're going and pass information needed
+    if ([segue.destinationViewController isKindOfClass:[PostWebViewController class]]){
+        PostWebViewController *webView = segue.destinationViewController;
+        webView.destination = [posts[index] url];
+    } else if ([segue.destinationViewController isKindOfClass:[PostCommentViewController class]]){
+        PostCommentViewController *postCommentView = segue.destinationViewController;
+        postCommentView.parentId = [posts[index] post_id];
+        postCommentView.parentType = @"Post";
+    }
+
+}
+
 
 @end

@@ -11,13 +11,16 @@
 @implementation Post
 
 @synthesize author;
-@synthesize title;
+@synthesize link_title;
 @synthesize selftext;
 @synthesize created;
 @synthesize subreddit;
 @synthesize score;
 @synthesize num_comments;
 @synthesize url;
+@synthesize thumbnail_url;
+@synthesize post_id;
+@synthesize isSelfPost;
 
 
 -(id) initWithDictionary:(NSDictionary *) dictionary{
@@ -28,16 +31,21 @@
     
     
     author = dictionary[@"author"];
-    title = dictionary[@"title"];
+    link_title = dictionary[@"title"];
     selftext = dictionary[@"selftext"];
     subreddit = dictionary[@"subreddit"];
+    post_id = dictionary[@"id"];
     score = [dictionary[@"score"] integerValue];
     num_comments = [dictionary[@"num_comments"] integerValue];
+
     
     NSTimeInterval epochTime = [dictionary[@"created"] doubleValue];
     created = [[NSDate alloc] initWithTimeIntervalSince1970:epochTime];
     
     url = [[NSURL alloc] initWithString:dictionary[@"url"]];
+    isSelfPost = [dictionary[@"url"] containsString: @"reddit.com"];
+    
+    thumbnail_url = [[NSURL alloc] initWithString:dictionary[@"thumbnail"]];
 
     
     return self;

@@ -14,6 +14,7 @@
 
 typedef void (^NSDataHandler)(NSData *, NSError *);
 typedef void (^NSArrayHandler)(NSArray *, NSError *);
+typedef void (^NSErrorHandler)(NSError *);
 
 
 @interface RedditAPI : NSObject
@@ -30,9 +31,9 @@ typedef void (^NSArrayHandler)(NSArray *, NSError *);
 - (void) getCommentsAfterCommentID: (NSString *)commentId InOrder: (NSString *)order Completion:(NSArrayHandler) completion;
 - (void) getFriendsWithCompletion:(NSArrayHandler) completion;
 
-- (void) addFriendWithName: (NSString *)userName;
+- (void) addFriendWithName: (NSString *)userName OnError:(NSErrorHandler)errorHandler;
 - (void) removeFriendWithName: (NSString *)userName;
-- (void) replyToPostWithID: (NSString *)postID WithText: (NSString *)commentText;
+- (void) replyToPostWithID: (NSString *)postID Type:(NSString *)parentType WithText: (NSString *)commentText;
 - (void) castVoteForPostWithID: (NSString *)postID InDirection: (int) voteDirection;
 - (void) deleteUserPostWithID: (NSString *)postID;
 
