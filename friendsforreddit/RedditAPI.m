@@ -38,53 +38,51 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
 /*
  * Method used to make all API requests once access token has been obtained.
  *
- * TODO: implement error handling
  */
 - (void) makeAPIRequestWithURL:(NSURL *) url
                         Method:(NSString *) method
                       SendData:(NSData *) sendData
                 WithCompletion:(NSDataHandler) completion {
     
-    ///////////////FOR TESTING PURPOSES ///////////////
-    ///////////////Must be updated hourly//////////////
     accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"];
-    ///////////////////////////////////////////////////
-    
-    
+
+    //Set up the HTTP request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: url] ;
-    
     NSString *bearerToken = [[NSString alloc] initWithFormat:@"bearer %@", accessToken];
     [request setValue:bearerToken forHTTPHeaderField:@"Authorization"];
     [request setValue:UserAgent forHTTPHeaderField:@"User-Agent"];
-    
     [request setHTTPMethod: method];
     
+    //Attach JSON data if present
     if (sendData){
         [request setHTTPBody: sendData];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     }
     
-    NSLog(@"Making api request to reddit");
+#ifdef DEBUG
+    NSLog(@"Making API request to reddit\n URL: %@", [url absoluteString]);
+#endif
     
+    //Create data session
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request
                                     completionHandler:^(NSData *data,
                                     NSURLResponse *response,
                                     NSError *error) {
                                         
+                                        //Check for errors
                                         if (error){
-                                            NSLog(@"Error in makeAPIRequest");
-                                            //Cannot connect to reddit
-                                        } else {
-                                            NSLog(@"Request Succesful");
-                                            NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *) response;
-                                            NSLog(@"http response code %ld", urlResponse.statusCode);
-                                            long statusCode = urlResponse.statusCode;
+                                            NSLog(@"Error connecting to Reddit");
                                             
-                                            if (statusCode == 401){
+                                        } else {
+                                            NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *) response;
+                                            NSLog(@"Request Succesful, HTTP response code %ld", urlResponse.statusCode);
+                                            
+                                            if (urlResponse.statusCode == 401){
                                                 //Bad Authorization, refresh token
-                                            } else if (statusCode >= 400 ) {
+                                            } else if (urlResponse.statusCode >= 400 ) {
+                                                //Create an error if HTTP status code is an error code
                                                 error = [NSError errorWithDomain:@"HTTP Error"
-                                                                            code:statusCode
+                                                                            code:urlResponse.statusCode
                                                                         userInfo:@{@"response":response}];
                                             }
                                             
@@ -92,6 +90,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
                                         
                                         completion(data, error);
                                     }];
+    //Run data session
     [task resume];
     
 }
@@ -114,14 +113,13 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
  * completion: Code block to deal with NSArray of Post objects created by request
  */
 - (void) getPostsAfterPostID: (NSString *)postId InOrder: (NSString *)order Completion:(NSArrayHandler) completion{
-    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@/r/friends",BaseURL];
+    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@/r/friends/.json",BaseURL];
     
     
     if (postId){
-        [urlString appendFormat:@"/?count=%d&after=t1_%@",ObjectsPerRequest, postId];
+        [urlString appendFormat:@"?count=%d&after=t3_%@",ObjectsPerRequest, postId];
     }
     
-    [urlString appendString:@".json"];
     
     NSURL *url = [[NSURL alloc] initWithString:urlString];
     
@@ -136,6 +134,12 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
         for (NSDictionary *child in json[@"data"][@"children"]){
             Post *post = [[Post alloc] initWithDictionary:child[@"data"]];
             [postArray addObject:post];
+        }
+        
+        //Load in images for these posts (should probably figure out a better strategy than this)
+        for(Post *post in postArray){
+            NSData *thumbnailData = [NSData dataWithContentsOfURL:post.thumbnail_url];
+            post.thumbnail = [UIImage imageWithData:thumbnailData scale:1.75];
         }
         
         completion(postArray, error);
@@ -155,13 +159,11 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
 - (void) getCommentsAfterCommentID:(NSString *)commentId
                            InOrder:(NSString *)order
                         Completion:(NSArrayHandler)completion{
-    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@/r/friends/comments",BaseURL];
+    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@r/friends/comments",BaseURL];
     
     if (commentId){
         [urlString appendFormat:@"/?count=%d&after=t1_%@",ObjectsPerRequest, commentId];
     }
-    
-    NSLog(urlString);
     
     NSURL *url = [[NSURL alloc] initWithString: urlString];
     
@@ -209,7 +211,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
             NSDictionary *json = jsonArray[0];
             
 
-            
+            //Create the friend objects
             for(NSDictionary *child in json[@"data"][@"children"]){
                 User *friend = [[User alloc] initWithName:child[@"name"]];
                 [userArray addObject:friend];
@@ -267,22 +269,37 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
  * postID: A valid post or comment ID
  * commentText: Raw markdown comment text
  */
-- (void) replyToPostWithID:(NSString *)postID Type:(NSString *)parentType WithText:(NSString *)commentText{
+- (void) replyToPostWithID:(NSString *)postID
+                      Type:(NSString *)parentType
+                  WithText:(NSString *)commentText
+                   OnError:(NSErrorHandler)errorHandler{
+    
     NSString *urlString = [[NSString alloc] initWithFormat:@"%@api/comment",BaseURL];
-    NSURL *url = [[NSURL alloc] initWithString: urlString];
     
-    NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] init];
+    NSString *typeIdentifier;
     
-    jsonDict[@"api_type"] = @"json";
-    jsonDict[@"text"] = commentText;
-    jsonDict[@"thing_id"] = [[NSString alloc] initWithFormat:@"t1_%@",postID];
+    //Resolve fullname thing type
+    if ([parentType isEqualToString:@"Comment"]){
+        typeIdentifier =@"t1";
+    } else {
+        typeIdentifier = @"t3";
+    }
     
-    NSError *serializationError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:&serializationError];
-    NSLog([[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+    NSString *fullThingName = [[NSString alloc] initWithFormat:@"%@_%@", typeIdentifier, postID];
     
-    [self makeAPIRequestWithURL:url Method:@"POST" SendData:jsonData WithCompletion:^(NSData *data, NSError *error) {
-        NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    //Construct query parameters
+    NSURLComponents *components = [NSURLComponents componentsWithString:urlString];
+    NSURLQueryItem *api_type = [NSURLQueryItem queryItemWithName:@"api_type" value:@"json"];
+    NSURLQueryItem *thing_id = [NSURLQueryItem queryItemWithName:@"thing_id" value:fullThingName];
+    NSURLQueryItem *text = [NSURLQueryItem queryItemWithName:@"text" value:commentText];
+    components.queryItems = @[ api_type, thing_id, text ];
+    NSURL *url = components.URL;
+    
+    
+    [self makeAPIRequestWithURL:url Method:@"POST" WithCompletion:^(NSData *data, NSError *error) {
+        if (error){
+            errorHandler(error);
+        }
     }];
     
 }
@@ -294,21 +311,24 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
  * postID: A valid post or comment ID
  * InDirection: Direction of vote, 1 = upvote, -1 = downvote, 0 = uncast vote
  */
-- (void) castVoteForPostWithID: (NSString *)postID InDirection: (int) voteDirection{
-    NSString *urlString = [[NSString alloc] initWithFormat:@"%@api/vote",BaseURL];
+- (void) castVoteForPostWithID: (NSString *)postID Type:(NSString *)postType InDirection: (int) voteDirection{
+    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@api/vote",BaseURL];
+    
+    NSString *typeIdentifier;
+    
+    //Resolve fullname thing type
+    if ([postType isEqualToString:@"Comment"]){
+        typeIdentifier =@"t1";
+    } else {
+        typeIdentifier = @"t3";
+    }
+
+    [urlString appendFormat:@"?dir=%d&id=%@_%@", voteDirection, typeIdentifier, postID];
+    
     NSURL *url = [[NSURL alloc] initWithString: urlString];
     
-    NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] init];
-    
-    jsonDict[@"dir"] = [[NSString alloc] initWithFormat:@"%d", voteDirection];
-    jsonDict[@"id"] = postID;
-    
-    NSError *error = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:&error];
-    
-    [self makeAPIRequestWithURL:url Method:@"POST" SendData:jsonData WithCompletion:^(NSData *data, NSError *error) {
-        NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    }];
+   
+    [self makeAPIRequestWithURL:url Method:@"POST" WithCompletion:^(NSData *data, NSError *error) {}];
     
 }
 
