@@ -13,5 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *postAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *subreddit;
+@property (weak, nonatomic) IBOutlet UILabel *timestamp;
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnail;
+
 
 @end
