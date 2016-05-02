@@ -15,10 +15,18 @@
 @implementation PostDetailViewController
 
 @synthesize post;
+@synthesize postTitle;
+@synthesize postText;
+@synthesize userName;
+@synthesize subreddit;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    postTitle.text = post.link_title;
+    userName.text = post.author;
+    subreddit.text = [[NSString alloc] initWithFormat:@"/r/%@",post.subreddit];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    postText.text = post.selftext;
 }
 
 - (void)didReceiveMemoryWarning {
