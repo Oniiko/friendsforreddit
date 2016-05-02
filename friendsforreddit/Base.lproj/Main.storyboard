@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k0u-i2-80H" id="X4d-rY-gEH">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="144.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="114.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="subreddit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ib-Jn-I2w">
@@ -538,7 +538,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2be-sm-Cag" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="Mnx-PS-tjC" kind="relationship" relationship="viewControllers" id="lZM-Fc-1DR"/>
                         <segue destination="2be-sm-Cag" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="vqC-3T-gOP" kind="relationship" relationship="viewControllers" id="Ttw-rE-DOM"/>
@@ -546,7 +545,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-99" y="798"/>
+            <point key="canvasLocation" x="-127" y="778"/>
         </scene>
         <!--Posts-->
         <scene sceneID="bXq-2W-88A">
