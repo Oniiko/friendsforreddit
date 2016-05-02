@@ -24,8 +24,12 @@ RedditAPI *api;
     api = [RedditAPI sharedRedditAPI];
     self.friends = [[NSMutableArray alloc] init];
     
-    [self loadFriends];
 
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self loadFriends];
 }
 
 
@@ -40,9 +44,15 @@ RedditAPI *api;
  */
 - (void) loadFriends{
     [api getFriendsWithCompletion:^(NSArray *returnedFriends, NSError *error){
-        [friends removeAllObjects];
+
         
-        NSLog([error localizedDescription]);
+        //TODO: display error message
+        if (error){
+            NSLog([error localizedDescription]);
+            return;
+        }
+        
+        [friends removeAllObjects];
         [friends addObjectsFromArray:returnedFriends];
         
         //Reload data on the UI thread
