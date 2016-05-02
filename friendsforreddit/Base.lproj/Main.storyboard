@@ -543,7 +543,7 @@
         <scene sceneID="bXq-2W-88A">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mnx-PS-tjC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Posts" image="Posts Icon" id="RbN-Io-qMY"/>
+                    <tabBarItem key="tabBarItem" title="Posts" image="list-simple-7" id="RbN-Io-qMY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gQX-mg-Lti">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -562,7 +562,7 @@
         <scene sceneID="vt5-nL-MXZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2be-sm-Cag" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Comments" image="Comments Icon" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Comments" image="text-align-right-7" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zla-Ir-BCR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -581,7 +581,7 @@
         <scene sceneID="x3l-RZ-Tpr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vqC-3T-gOP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" image="Friends Icon" id="Jij-ds-MJl"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="circle-user-7" id="Jij-ds-MJl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d0d-dA-ohJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -598,10 +598,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Comments Icon" width="30" height="30"/>
-        <image name="Friends Icon" width="30" height="30"/>
-        <image name="Posts Icon" width="30" height="30"/>
+        <image name="circle-user-7" width="30" height="30"/>
         <image name="first" width="30" height="30"/>
+        <image name="list-simple-7" width="30" height="30"/>
+        <image name="text-align-right-7" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4wW-Mp-OoZ"/>
