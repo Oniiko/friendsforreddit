@@ -30,6 +30,8 @@
     RedditAPI *api =  [RedditAPI sharedRedditAPI];
     
     [api addFriendWithName: userName.text OnError:^(NSError *error){
+        
+        //HTTP 400 means the user name was invalid, alert user and remain in view.
         if (error.code == 400){
             NSString *errorMessage = @"Invalid User Name";
             
@@ -43,14 +45,20 @@
             
             [alert addAction:action];
             
-            [self presentViewController:alert animated:YES completion:nil];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:alert animated:YES completion:nil];
+            });
             
             return;
         }
     }];
     
-    
+    //Request was succesful, return to friends view
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 /*
 #pragma mark - Navigation
