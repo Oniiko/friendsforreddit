@@ -23,7 +23,7 @@
     @property (nonatomic, assign, readonly) NSMutableArray *replies;
 
     //If voted on by logged-in user
-    @property (nonatomic, assign, readonly) BOOL likes;
+    @property (nonatomic, assign) NSInteger vote;
 
 -(id) initWithDictionary:(NSDictionary *) dictionary;
 

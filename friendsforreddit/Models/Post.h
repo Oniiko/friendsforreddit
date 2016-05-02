@@ -22,11 +22,11 @@
     @property (nonatomic, assign, readonly) NSUInteger score;
     @property (nonatomic, assign, readonly) CGFloat upvoteRatio;
     @property (nonatomic, copy, readonly) NSURL *thumbnail_url;
-    @property (nonatomic, copy, readonly) UIImage *thumbnail;
+    @property (nonatomic, copy) UIImage *thumbnail;
     @property (nonatomic, readonly) BOOL isSelfPost;
 
     //If voted on by logged-in user
-    @property (nonatomic, readonly) BOOL likes;
+    @property (nonatomic) NSInteger vote;
 
 -(id) initWithDictionary:(NSDictionary *) dictionary;
 

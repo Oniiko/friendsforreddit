@@ -21,7 +21,7 @@
 @synthesize thumbnail_url;
 @synthesize post_id;
 @synthesize isSelfPost;
-
+@synthesize vote;
 
 -(id) initWithDictionary:(NSDictionary *) dictionary{
     self = [super init];
@@ -37,6 +37,18 @@
     post_id = dictionary[@"id"];
     score = [dictionary[@"score"] integerValue];
     num_comments = [dictionary[@"num_comments"] integerValue];
+    
+    //Parse out the user's vote on this post (ugly)
+    if ([dictionary objectForKey:@"likes"]){
+        if ([dictionary[@"likes"] isKindOfClass:[NSNull class] ]){
+            vote = 0;
+        }
+        else if ([dictionary[@"likes"] boolValue] == YES){
+            vote = 1;
+        } else {
+            vote = -1;
+        }
+    }
 
     
     NSTimeInterval epochTime = [dictionary[@"created"] doubleValue];
