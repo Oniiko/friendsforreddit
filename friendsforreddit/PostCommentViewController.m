@@ -34,11 +34,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)hitPostButton:(id)sender {
+    
+    [self postComment];
+}
 
 - (void) postComment{
     RedditAPI *api = [RedditAPI sharedRedditAPI];
     
-    [api replyToPostWithID: self.parentId Type: self.parentType WithText: self.commentText.text];
+    [api replyToPostWithID: self.parentId
+                      Type: self.parentType
+                  WithText: self.commentText.text
+                   OnError:^(NSError *error){
+                       //TODO: Show error message
+                       return;
+        
+    }];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 /*

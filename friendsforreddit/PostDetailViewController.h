@@ -13,4 +13,9 @@
 
 @property (nonatomic) Post *post;
 
+@property (weak, nonatomic) IBOutlet UILabel *postTitle;
+@property (weak, nonatomic) IBOutlet UILabel *subreddit;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UITextView *postText;
+
 @end
