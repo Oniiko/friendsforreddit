@@ -207,10 +207,10 @@
             </objects>
             <point key="canvasLocation" x="2388" y="-130"/>
         </scene>
-        <!--PostView-->
+        <!--LoginViewController-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController title="PostView" id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
+                <viewController title="LoginViewController" id="9pv-A4-QxB" customClass="LogInViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -221,22 +221,50 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="Friends For Reddit" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD">
                                 <rect key="frame" x="221" y="279" width="158" height="42"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80784313725490198" green="0.8901960784313725" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="25"/>
+                                <color key="textColor" red="1" green="0.27058823529411763" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5l-3d-VXL">
                                 <rect key="frame" x="270" y="368" width="38" height="30"/>
-                                <state key="normal" title="Login"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="0.27058823529999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="1" green="0.27058823529999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="Jgh-SH-fte" kind="presentation" id="2Uw-9m-fJe"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g4h-Ej-ffu">
+                                <rect key="frame" x="189" y="151" width="200" height="83"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HIC-CS-wVA">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="83"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-w6-Lga">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="83"/>
+                                                <subviews>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" image="Icon-83.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ljb-kV-yoH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="83"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="200" id="VkN-Yc-yVy"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="HIC-CS-wVA" firstAttribute="top" secondItem="g4h-Ej-ffu" secondAttribute="top" constant="10" id="XRX-fO-Ywg"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="h5l-3d-VXL" firstAttribute="top" secondItem="KQZ-1w-vlD" secondAttribute="bottom" constant="47" id="Bz9-Kf-U0p"/>
+                            <constraint firstItem="Ljb-kV-yoH" firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="JIE-CC-oPT"/>
                             <constraint firstItem="h5l-3d-VXL" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="Kzo-WN-3Gc"/>
                             <constraint firstItem="KQZ-1w-vlD" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="Yyc-PF-0i2"/>
                             <constraint firstItem="h5l-3d-VXL" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="bUf-jl-Uy3"/>
@@ -606,6 +634,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Icon-83.5" width="83" height="83"/>
         <image name="circle-user-7" width="30" height="30"/>
         <image name="first" width="30" height="30"/>
         <image name="list-simple-7" width="30" height="30"/>

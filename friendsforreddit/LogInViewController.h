@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  LoginViewController.h
 //  friendsforreddit
 //
 //  Created by Gregory Johnson on 4/5/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+@interface LogInViewController : UIViewController
 {
 }
 
