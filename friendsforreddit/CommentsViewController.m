@@ -80,6 +80,12 @@
         UIColor *upvoteColor = [UIColor colorWithRed:1 green:139.0/255.0 blue:96.0/255.0 alpha:0.5];
         cell.backgroundColor = upvoteColor;
     }
+    else {
+        swipedComment.vote = 0;
+        [api castVoteForPostWithID:swipedComment.comment_id Type:@"Comment" InDirection:0];
+        UITableViewCell *cell =  [self.tableView cellForRowAtIndexPath:indexPath];
+        cell.backgroundColor = [UIColor whiteColor];
+    }
 
 }
 
@@ -100,6 +106,12 @@
         UITableViewCell *cell =  [self.tableView cellForRowAtIndexPath:indexPath];
         UIColor *downvoteColor = [UIColor colorWithRed:148.0/255.0 green:148.0/255.0 blue:1 alpha:0.5];
         cell.backgroundColor = downvoteColor;
+    }
+    else {
+        swipedComment.vote = 0;
+        [api castVoteForPostWithID:swipedComment.comment_id Type:@"Comment" InDirection:0];
+        UITableViewCell *cell =  [self.tableView cellForRowAtIndexPath:indexPath];
+        cell.backgroundColor = [UIColor whiteColor];
     }
 }
 
@@ -161,7 +173,7 @@
         //Stop any loading animations
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
-        
+        [self.view setNeedsDisplay]; // Refresh View
         //Reload data on the UI thread
         dispatch_async(dispatch_get_main_queue(), ^{
             [tableView reloadData];
@@ -198,7 +210,7 @@
     cell.commentText.text = comment.body;
     cell.commentAuthor.text = comment.author;
     cell.subreddit.text = [[NSString alloc] initWithFormat:@"/r/%@",  comment.subreddit];
-    
+    cell.score.text = [[NSString alloc] initWithFormat:@"Score: %lu", comment.score];
     cell.timestamp.text = [NSDateFormatter localizedStringFromDate: comment.created
                                                          dateStyle:NSDateFormatterMediumStyle
                                                          timeStyle:NSDateFormatterShortStyle];

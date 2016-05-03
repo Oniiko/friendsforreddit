@@ -8,10 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		434E62B01CBE14310025E61B /* ModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 434E62AF1CBE14310025E61B /* ModalWebViewController.m */; };
-		43C079A61CB6C42400DFC335 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 43C079A51CB6C42400DFC335 /* Models */; };
 		E72D5EF21CB40A960011EE82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF11CB40A960011EE82 /* main.m */; };
 		E72D5EF51CB40A960011EE82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF41CB40A960011EE82 /* AppDelegate.m */; };
-		E72D5EF81CB40A960011EE82 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF71CB40A960011EE82 /* FirstViewController.m */; };
+		E72D5EF81CB40A960011EE82 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF71CB40A960011EE82 /* LogInViewController.m */; };
 		E72D5EFB1CB40A960011EE82 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EFA1CB40A960011EE82 /* CommentsViewController.m */; };
 		E72D5EFE1CB40A960011EE82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E72D5EFC1CB40A960011EE82 /* Main.storyboard */; };
 		E72D5F001CB40A960011EE82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E72D5EFF1CB40A960011EE82 /* Assets.xcassets */; };
@@ -55,13 +54,12 @@
 /* Begin PBXFileReference section */
 		434E62AE1CBE13DD0025E61B /* ModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalWebViewController.h; sourceTree = "<group>"; };
 		434E62AF1CBE14310025E61B /* ModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalWebViewController.m; sourceTree = "<group>"; };
-		43C079A51CB6C42400DFC335 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		E72D5EED1CB40A960011EE82 /* friendsforreddit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = friendsforreddit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E72D5EF11CB40A960011EE82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E72D5EF31CB40A960011EE82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E72D5EF41CB40A960011EE82 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E72D5EF61CB40A960011EE82 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		E72D5EF71CB40A960011EE82 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		E72D5EF61CB40A960011EE82 /* LogInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		E72D5EF71CB40A960011EE82 /* LogInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		E72D5EF91CB40A960011EE82 /* CommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		E72D5EFA1CB40A960011EE82 /* CommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		E72D5EFD1CB40A960011EE82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -158,8 +156,8 @@
 				E72D5EF31CB40A960011EE82 /* AppDelegate.h */,
 				E72D5EF41CB40A960011EE82 /* AppDelegate.m */,
 				E7942A041CB94BD200F31CA2 /* Models */,
-				E72D5EF61CB40A960011EE82 /* FirstViewController.h */,
-				E72D5EF71CB40A960011EE82 /* FirstViewController.m */,
+				E72D5EF61CB40A960011EE82 /* LogInViewController.h */,
+				E72D5EF71CB40A960011EE82 /* LogInViewController.m */,
 				434E62AE1CBE13DD0025E61B /* ModalWebViewController.h */,
 				434E62AF1CBE14310025E61B /* ModalWebViewController.m */,
 				E73FDCF91CC93CA8005089C4 /* PostViewContoller.h */,
@@ -185,7 +183,6 @@
 				E7BD28481CC7E0B9002A8B53 /* SVPullToRefresh */,
 				E72D5F291CB4231A0011EE82 /* Constants.h */,
 				E72D5F2A1CB4231A0011EE82 /* Constants.m */,
-				43C079A51CB6C42400DFC335 /* Models */,
 				E72D5EFC1CB40A960011EE82 /* Main.storyboard */,
 				E72D5EFF1CB40A960011EE82 /* Assets.xcassets */,
 				E72D5F011CB40A960011EE82 /* LaunchScreen.storyboard */,
@@ -351,7 +348,6 @@
 			files = (
 				E72D5F031CB40A960011EE82 /* LaunchScreen.storyboard in Resources */,
 				E72D5F001CB40A960011EE82 /* Assets.xcassets in Resources */,
-				43C079A61CB6C42400DFC335 /* Models in Resources */,
 				E72D5EFE1CB40A960011EE82 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,7 +385,7 @@
 				E7942A0D1CB94BD200F31CA2 /* Post.m in Sources */,
 				E7E50DAC1CC53B8D00C14476 /* CommentTableViewCell.m in Sources */,
 				E7DC3B9F1CC93DE200919EE5 /* PostTableViewCell.m in Sources */,
-				E72D5EF81CB40A960011EE82 /* FirstViewController.m in Sources */,
+				E72D5EF81CB40A960011EE82 /* LogInViewController.m in Sources */,
 				E7BD28471CC7DD8C002A8B53 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E7BD28461CC7DD8C002A8B53 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				E72D5F281CB41F9B0011EE82 /* RedditAPI.m in Sources */,
