@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO; //Make typing start at the top
     }
 
 - (void)viewWillAppear:(BOOL)animated{

@@ -1,5 +1,4 @@
-//
-//  LoginViewController.h
+//  LogInViewController.h
 //  friendsforreddit
 //
 //  Created by Gregory Johnson on 4/5/16.

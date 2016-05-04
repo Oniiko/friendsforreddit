@@ -15,4 +15,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic) IBOutlet UILabel *username;
+
 @end

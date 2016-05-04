@@ -18,15 +18,21 @@
 @synthesize postTitle;
 @synthesize postText;
 @synthesize userName;
+@synthesize timestamp;
 @synthesize subreddit;
+@synthesize score;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     postTitle.text = post.link_title;
     userName.text = post.author;
     subreddit.text = [[NSString alloc] initWithFormat:@"/r/%@",post.subreddit];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    score.text = [[NSString alloc] initWithFormat:@"Score: %lu", post.score];
+    timestamp.text = [NSDateFormatter localizedStringFromDate: post.created
+                                                    dateStyle:NSDateFormatterMediumStyle
+                                                    timeStyle:NSDateFormatterShortStyle];
     postText.text = post.selftext;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)didReceiveMemoryWarning {

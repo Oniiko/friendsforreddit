@@ -49,7 +49,7 @@
     [self.tableView addGestureRecognizer:recognizer];
     
     //Set automatic cell sizing
-    self.tableView.estimatedRowHeight = 150;
+    self.tableView.estimatedRowHeight = 250;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     
@@ -126,9 +126,9 @@
         
         [posts addObjectsFromArray:returnedPosts];
         
+        [self.view setNeedsDisplay]; //Refresh View
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
-        
         //Reload data on the UI thread
         dispatch_async(dispatch_get_main_queue(), ^{
             [tableView reloadData];
@@ -156,6 +156,12 @@
         UIColor *upvoteColor = [UIColor colorWithRed:1 green:139.0/255.0 blue:96.0/255.0 alpha:0.5];
         cell.backgroundColor = upvoteColor;
     }
+    else {
+        swipedPost.vote = 0;
+        [api castVoteForPostWithID:swipedPost.post_id Type:@"Link" InDirection:0];
+        UITableViewCell *cell =  [self.tableView cellForRowAtIndexPath:indexPath];
+        cell.backgroundColor = [UIColor whiteColor];
+    }
     
 }
 
@@ -178,6 +184,12 @@
         UITableViewCell *cell =  [self.tableView cellForRowAtIndexPath:indexPath];
         UIColor *downvoteColor = [UIColor colorWithRed:148.0/255.0 green:148.0/255.0 blue:1 alpha:0.5];
         cell.backgroundColor = downvoteColor;
+    }
+    else {
+        swipedPost.vote = 0;
+        [api castVoteForPostWithID:swipedPost.post_id Type:@"Link" InDirection:0];
+        UITableViewCell *cell =  [self.tableView cellForRowAtIndexPath:indexPath];
+        cell.backgroundColor = [UIColor whiteColor];
     }
 }
 
@@ -207,6 +219,8 @@
     cell.postAuthor.text = post.author;
     cell.subreddit.text = [[NSString alloc] initWithFormat:@"/r/%@", post.subreddit];
     cell.thumbnail.image = post.thumbnail;
+    cell.url.text = post.url.absoluteString;
+    cell.score.text = [[NSString alloc] initWithFormat:@"Score: %lu", post.score];
     cell.timestamp.text = [NSDateFormatter localizedStringFromDate: post.created
                                                          dateStyle:NSDateFormatterMediumStyle
                                                          timeStyle:NSDateFormatterShortStyle];

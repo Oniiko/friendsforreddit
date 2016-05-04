@@ -69,6 +69,7 @@
                                               [[NSUserDefaults standardUserDefaults] setValue: json[@"access_token"] forKey:@"access_token"];
                                               [[NSUserDefaults standardUserDefaults] setValue: json[@"refresh_token"] forKey:@"refresh_token"];
                                               [[NSUserDefaults standardUserDefaults] synchronize];
+
                                           }
                                       }];
         
