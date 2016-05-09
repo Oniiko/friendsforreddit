@@ -12,6 +12,7 @@
 @interface PostDetailViewController : UIViewController
 
 @property (nonatomic) Post *post;
+@property (nonatomic) NSMutableArray *comments;
 
 @property (weak, nonatomic) IBOutlet UILabel *postTitle;
 @property (weak, nonatomic) IBOutlet UILabel *subreddit;

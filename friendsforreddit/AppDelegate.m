@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Constants.h"
+#import "GSKeychain.h"
 
 @interface AppDelegate ()
 
@@ -64,16 +65,24 @@
                                               NSLog(@"Request Successful");
                                               NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                    options:NSJSONReadingAllowFragments
-                                                                                                     error:nil];
-                                              //Save access and refresh tokens in NSUserDefaults (Change to Keychain Later)
-                                              [[NSUserDefaults standardUserDefaults] setValue: json[@"access_token"] forKey:@"access_token"];
-                                              [[NSUserDefaults standardUserDefaults] setValue: json[@"refresh_token"] forKey:@"refresh_token"];
-                                              [[NSUserDefaults standardUserDefaults] synchronize];
-
+                                                                                                     error:nil];                                              
+                                              
+                                              [[GSKeychain systemKeychain] setSecret:json[@"access_token"] forKey:@"access_token"];
+                                              
+                                              [[GSKeychain systemKeychain] setSecret:json[@"refresh_token"] forKey:@"refresh_token"];
+                                              /**
+                                              if ([[GSKeychain systemKeychain] secretForKey:@"access_token"]) {
+                                                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                                  UITabBarController *ivc = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+                                                  [(UINavigationController*)self.window.rootViewController pushViewController:ivc animated:NO];
+                                              }
+                                               **/
+                                             
                                           }
                                       }];
         
         [task resume];
+
         return YES;
     }
     

@@ -101,7 +101,7 @@
     
     [api getPostsAfterPostID:lastPostID InOrder:@"HOT" Completion:^(NSArray *returnedPosts, NSError *error){
         
-        NSLog([error localizedDescription]);
+        NSLog(@"Error: %@", [error localizedDescription]);
         
         //Alert user if there is an error (most likely lost data connection)
         if(error){
@@ -152,7 +152,7 @@
         swipedPost.vote = 1;
         [api castVoteForPostWithID:swipedPost.post_id Type:@"Comment" InDirection:1];
         
-        UITableViewCell *cell =  [self.tableView cellForRowAtIndexPath:indexPath];
+        PostTableViewCell *cell =  [self.tableView cellForRowAtIndexPath:indexPath];
         UIColor *upvoteColor = [UIColor colorWithRed:1 green:139.0/255.0 blue:96.0/255.0 alpha:0.5];
         cell.backgroundColor = upvoteColor;
     }
@@ -206,8 +206,7 @@
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier =@"postCell";
     
-    PostTableViewCell *cell = [tableView
-                                  dequeueReusableCellWithIdentifier:CellIdentifier];
+    PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -276,6 +275,7 @@
     long index = [self.tableView indexPathForSelectedRow].row;
 
     //Switch between webview for external links and post detail for self posts
+    //NSLog([posts[index] isSelfPost] ? @"isSelfPost = Yes" : @"isSelfPost = No");
     if ([posts[index] isSelfPost]){
         [self performSegueWithIdentifier:@"PostDetailSegue" sender:self];
     } else {

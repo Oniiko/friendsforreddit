@@ -9,7 +9,7 @@
 #import "PostDetailViewController.h"
 
 @interface PostDetailViewController ()
-
+@property RedditAPI *api;
 @end
 
 @implementation PostDetailViewController
@@ -21,6 +21,8 @@
 @synthesize timestamp;
 @synthesize subreddit;
 @synthesize score;
+@synthesize comments;
+@synthesize api;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

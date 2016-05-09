@@ -35,7 +35,8 @@ typedef void (^NSErrorHandler)(NSError *);
 - (void) removeFriendWithName: (NSString *)userName;
 - (void) replyToPostWithID: (NSString *)postID Type:(NSString *)parentType WithText: (NSString *)commentText OnError:(NSErrorHandler)errorHandler;
 - (void) castVoteForPostWithID: (NSString *)postID Type:(NSString *)postType InDirection: (int) voteDirection;
-- (void) deleteUserPostWithID: (NSString *)postID;
+//- (void) deleteUserPostWithID: (NSString *)postID;
+
 
 
 @end
