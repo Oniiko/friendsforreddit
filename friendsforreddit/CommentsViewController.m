@@ -204,6 +204,8 @@
     }
     
     Comment *comment = [self.comments objectAtIndex:indexPath.row];
+    NSLog(@"testing get replies");
+    [api getCommentTree:comment];
     
     //Populate cell fields
     cell.postTitle.text = comment.link_title;

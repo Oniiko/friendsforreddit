@@ -23,6 +23,9 @@
 @synthesize comment_id;
 @synthesize subreddit;
 @synthesize vote;
+@synthesize perm_link_url;
+@synthesize link_id;
+@synthesize replies;
 
 -(id) initWithDictionary:(NSDictionary *) dictionary{
     self = [super init];
@@ -38,6 +41,10 @@
     score = [dictionary[@"score"] integerValue];
     comment_id = dictionary[@"id"];
     subreddit = dictionary[@"subreddit"];
+    link_id = dictionary[@"link_id"];
+    NSString *perm_link_string = [[NSString alloc] initWithFormat:@"%@%@", dictionary[@"link_url"], comment_id];
+    perm_link_url = [[NSURL alloc] initWithString:perm_link_string];
+
     
     //Parse out the user's comment on this post (ugly)
     if ([dictionary objectForKey:@"likes"]){
@@ -54,10 +61,29 @@
     NSTimeInterval epochTime = [dictionary[@"created"] doubleValue];
     created = [[NSDate alloc] initWithTimeIntervalSince1970:epochTime];
     
-    
-    
     return self;
     
 }
+
+-(void) populateRepliesWithArray:(NSArray *) array{
+    
+    for (NSDictionary *reply in array){
+        Comment *comment = [[Comment alloc] initWithDictionary:reply[@"data"]];
+        if (![[reply objectForKey:@"replies"] isKindOfClass:[NSString class]]){
+            [comment populateRepliesWithArray:reply[@"replies"][@"data"][@"children"]];
+        }
+        [self.replies addObject:comment];
+    }
+    
+    
+}
+
+-(NSString *) getRawLinkID{
+    
+    return [link_id stringByReplacingOccurrencesOfString:@"t3_"
+                                         withString:@""];
+}
+
+
 
 @end

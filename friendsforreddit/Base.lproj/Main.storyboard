@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9pv-A4-QxB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9pv-A4-QxB">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="171"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k0u-i2-80H" id="X4d-rY-gEH">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="170.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LZ-hD-KEw">
@@ -282,7 +282,7 @@
                         <constraints>
                             <constraint firstItem="KQZ-1w-vlD" firstAttribute="top" secondItem="EEV-r9-uks" secondAttribute="bottom" constant="58" id="Ajd-Bf-y49"/>
                             <constraint firstItem="h5l-3d-VXL" firstAttribute="top" secondItem="KQZ-1w-vlD" secondAttribute="bottom" constant="47" id="Bz9-Kf-U0p"/>
-                            <constraint firstItem="Ljb-kV-yoH" firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="JIE-CC-oPT"/>
+                            <constraint firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="JIE-CC-oPT"/>
                             <constraint firstItem="h5l-3d-VXL" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="Kzo-WN-3Gc"/>
                             <constraint firstItem="KQZ-1w-vlD" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="Yyc-PF-0i2"/>
                             <constraint firstItem="h5l-3d-VXL" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="bUf-jl-Uy3"/>
@@ -299,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-967" y="826"/>
+            <point key="canvasLocation" x="-1055" y="944"/>
         </scene>
         <!--Modal Web View Controller-->
         <scene sceneID="2i6-OO-ymf">
@@ -409,7 +409,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="142"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EeI-fq-iPo" id="Pdj-rk-aIf">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="141.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="141"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="subreddit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWt-Z4-DeG">
@@ -680,7 +680,7 @@
         <image name="text-align-right-7" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eao-VF-Zcf"/>
+        <segue reference="ss9-x0-8c9"/>
         <segue reference="Cbq-sg-HHl"/>
     </inferredMetricsTieBreakers>
 </document>

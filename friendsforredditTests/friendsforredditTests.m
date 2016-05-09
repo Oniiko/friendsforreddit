@@ -7,16 +7,19 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "RedditAPI.h"
 
 @interface friendsforredditTests : XCTestCase
-
+@property RedditAPI *api;
 @end
 
 @implementation friendsforredditTests
 
+@synthesize api;
+
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    api = [RedditAPI sharedRedditAPI];
 }
 
 - (void)tearDown {
@@ -28,6 +31,7 @@
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
 }
+
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
