@@ -7,6 +7,7 @@
 //
 
 #import "LogInViewController.h"
+#import "GSKeychain.h"
 
 @implementation LogInViewController
 
@@ -15,13 +16,11 @@
     // Do any additional setup after loading the view, typically from a nib.
     UIColor *redditBlue = [UIColor colorWithRed:206.0/255.0 green:227.0/255.0 blue:248.0/255.0 alpha:1];
     [[UINavigationBar appearance] setBarTintColor:redditBlue];
-    self.view.backgroundColor = redditBlue;
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"access_token"];
-
+    [[GSKeychain systemKeychain] removeSecretForKey:@"access_token"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"]) {
+    if ([[GSKeychain systemKeychain] secretForKey:@"access_token"]) {
         [self performSegueWithIdentifier:@"loggedInSegue" sender:nil];
     }
 }

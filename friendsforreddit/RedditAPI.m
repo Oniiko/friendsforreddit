@@ -8,7 +8,7 @@
 
 #import "RedditAPI.h"
 #import "Constants.h"
-
+#import "GSKeychain.h"
 
 @implementation RedditAPI
 
@@ -44,8 +44,8 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
                       SendData:(NSData *) sendData
                 WithCompletion:(NSDataHandler) completion {
     
-    accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"];
 
+    accessToken = [[GSKeychain systemKeychain] secretForKey:@"access_token"];
     //Set up the HTTP request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: url] ;
     NSString *bearerToken = [[NSString alloc] initWithFormat:@"bearer %@", accessToken];
@@ -138,8 +138,18 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
         
         //Load in images for these posts (should probably figure out a better strategy than this)
         for(Post *post in postArray){
-            NSData *thumbnailData = [NSData dataWithContentsOfURL:post.thumbnail_url];
-            post.thumbnail = [UIImage imageWithData:thumbnailData scale:1.75];
+            NSString *thumbUrl = post.thumbnail_url.absoluteString;
+            //NSLog(@"Post Title %@ | Post Thumb: %@", post.link_title, thumbUrl);
+            if ([thumbUrl isEqual: @"default"] || [thumbUrl isEqual: @"self"] || [thumbUrl isEqual: @""]) {
+                post.thumbnail = [UIImage imageNamed:@"post_default_image.png"];
+            }
+            else if ([thumbUrl isEqual: @"nsfw"]) {
+                post.thumbnail = [UIImage imageNamed:@"post_nsfw_image.png"];
+            }
+            else {
+                NSData *thumbnailData = [NSData dataWithContentsOfURL:post.thumbnail_url];
+                post.thumbnail = [UIImage imageWithData:thumbnailData scale:1.75];
+            }
         }
         
         completion(postArray, error);
@@ -237,7 +247,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     NSData *sendData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     
     [self makeAPIRequestWithURL:url Method:@"PUT" SendData:sendData WithCompletion:^(NSData *data, NSError *error){
-        NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         
         if (error){
             errorHandler(error);
@@ -257,7 +267,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     NSURL *url = [[NSURL alloc] initWithString: urlString];
     
     [self makeAPIRequestWithURL:url Method:@"DELETE" SendData:nil WithCompletion:^(NSData *data, NSError *error){
-        NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     }];
 }
 
@@ -331,5 +341,6 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     [self makeAPIRequestWithURL:url Method:@"POST" WithCompletion:^(NSData *data, NSError *error) {}];
     
 }
+
 
 @end

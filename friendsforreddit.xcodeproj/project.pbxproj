@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		434E62B01CBE14310025E61B /* ModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 434E62AF1CBE14310025E61B /* ModalWebViewController.m */; };
+		43F4C2951CE04C090094C6A9 /* GSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F4C2941CE04C090094C6A9 /* GSKeychain.m */; };
+		43F4C29B1CE05D690094C6A9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F4C29A1CE05D690094C6A9 /* Security.framework */; };
 		E72D5EF21CB40A960011EE82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF11CB40A960011EE82 /* main.m */; };
 		E72D5EF51CB40A960011EE82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF41CB40A960011EE82 /* AppDelegate.m */; };
 		E72D5EF81CB40A960011EE82 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E72D5EF71CB40A960011EE82 /* LogInViewController.m */; };
@@ -54,6 +56,9 @@
 /* Begin PBXFileReference section */
 		434E62AE1CBE13DD0025E61B /* ModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalWebViewController.h; sourceTree = "<group>"; };
 		434E62AF1CBE14310025E61B /* ModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalWebViewController.m; sourceTree = "<group>"; };
+		43F4C2931CE04BF70094C6A9 /* GSKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GSKeychain.h; sourceTree = "<group>"; };
+		43F4C2941CE04C090094C6A9 /* GSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSKeychain.m; sourceTree = "<group>"; };
+		43F4C29A1CE05D690094C6A9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E72D5EED1CB40A960011EE82 /* friendsforreddit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = friendsforreddit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E72D5EF11CB40A960011EE82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E72D5EF31CB40A960011EE82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -110,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43F4C29B1CE05D690094C6A9 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,9 +136,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43F4C2921CE04BE40094C6A9 /* GSKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				43F4C2931CE04BF70094C6A9 /* GSKeychain.h */,
+				43F4C2941CE04C090094C6A9 /* GSKeychain.m */,
+			);
+			name = GSKeychain;
+			sourceTree = "<group>";
+		};
 		E72D5EE41CB40A960011EE82 = {
 			isa = PBXGroup;
 			children = (
+				43F4C29A1CE05D690094C6A9 /* Security.framework */,
 				E72D5EEF1CB40A960011EE82 /* friendsforreddit */,
 				E72D5F0C1CB40A960011EE82 /* friendsforredditTests */,
 				E72D5F171CB40A970011EE82 /* friendsforredditUITests */,
@@ -155,6 +171,7 @@
 			children = (
 				E72D5EF31CB40A960011EE82 /* AppDelegate.h */,
 				E72D5EF41CB40A960011EE82 /* AppDelegate.m */,
+				43F4C2921CE04BE40094C6A9 /* GSKeychain */,
 				E7942A041CB94BD200F31CA2 /* Models */,
 				E72D5EF61CB40A960011EE82 /* LogInViewController.h */,
 				E72D5EF71CB40A960011EE82 /* LogInViewController.m */,
@@ -380,6 +397,7 @@
 				E7DC7B411CCE71C5005BB6D2 /* PostWebViewController.m in Sources */,
 				E72D5EFB1CB40A960011EE82 /* CommentsViewController.m in Sources */,
 				E72D5EF51CB40A960011EE82 /* AppDelegate.m in Sources */,
+				43F4C2951CE04C090094C6A9 /* GSKeychain.m in Sources */,
 				E777FCDB1CCFD3C4000485A9 /* AddFriendViewController.m in Sources */,
 				E777FCD81CCFC082000485A9 /* PostCommentViewController.m in Sources */,
 				E7942A0D1CB94BD200F31CA2 /* Post.m in Sources */,

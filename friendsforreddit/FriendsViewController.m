@@ -48,7 +48,7 @@ RedditAPI *api;
         
         //TODO: display error message
         if (error){
-            NSLog([error localizedDescription]);
+            NSLog(@"%@", [error localizedDescription]);
             return;
         }
         

@@ -145,7 +145,7 @@
 
     [api getCommentsAfterCommentID:lastCommentID InOrder:@"HOT" Completion:^(NSArray *returnedComments, NSError *error){
 
-        NSLog([error localizedDescription]);
+        NSLog(@"%@", [error localizedDescription]);
         
         if(error){
             dispatch_async(dispatch_get_main_queue(), ^{

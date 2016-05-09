@@ -37,7 +37,14 @@
     post_id = dictionary[@"id"];
     score = [dictionary[@"score"] integerValue];
     num_comments = [dictionary[@"num_comments"] integerValue];
+    isSelfPost = [dictionary[@"url"] containsString: @"reddit.com"];
+    /**
+    NSLog(@"Self Post: %@", dictionary[@"is_self"]);
+    isSelfPost = [dictionary[@"self_post"] boolValue]? YES : NO;
+    [self setIsSelfPost: [dictionary[@"self_post"] boolValue]];
+    NSLog(@"Actual Value: %s", isSelfPost ? "true" : "false");
     
+     **/
     //Parse out the user's vote on this post (ugly)
     if ([dictionary objectForKey:@"likes"]){
         if ([dictionary[@"likes"] isKindOfClass:[NSNull class] ]){
@@ -55,7 +62,7 @@
     created = [[NSDate alloc] initWithTimeIntervalSince1970:epochTime];
     
     url = [[NSURL alloc] initWithString:dictionary[@"url"]];
-    isSelfPost = [dictionary[@"url"] containsString: @"reddit.com"];
+    //isSelfPost = [dictionary[@"url"] containsString: @"reddit.com"];
     
     thumbnail_url = [[NSURL alloc] initWithString:dictionary[@"thumbnail"]];
 
