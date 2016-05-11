@@ -29,8 +29,12 @@
 */
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    
     if ([url.scheme isEqualToString:@"friendsforreddit"]) {
         NSArray *queryParams = [[url query] componentsSeparatedByString:@"&"];
+
+        NSArray *errorParam = [queryParams filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF BEGINSWITH %@", @"error="]];
+        if (errorParam.firstObject != nil) return NO;
         NSArray *codeParam = [queryParams filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF BEGINSWITH %@", @"code="]];
         NSString *codeQuery = [codeParam objectAtIndex:0];
         NSString *code = [codeQuery stringByReplacingOccurrencesOfString:@"code=" withString:@""];
@@ -62,22 +66,18 @@
                                           if (error){
                                               NSLog(@"Error");
                                           } else {
-                                              NSLog(@"Request Successful");
+                                              NSLog(@"Request Successful. Response Code: %@", response);
                                               NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                    options:NSJSONReadingAllowFragments
-                                                                                                     error:nil];                                              
+                                                                                                     error:nil];
+                        
+                                              [[GSKeychain systemKeychain] secretForKey:@"access_token"];
+                                              [[GSKeychain systemKeychain] secretForKey:@"refresh_token"];
                                               
                                               [[GSKeychain systemKeychain] setSecret:json[@"access_token"] forKey:@"access_token"];
                                               
                                               [[GSKeychain systemKeychain] setSecret:json[@"refresh_token"] forKey:@"refresh_token"];
-                                              /**
-                                              if ([[GSKeychain systemKeychain] secretForKey:@"access_token"]) {
-                                                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                                  UITabBarController *ivc = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
-                                                  [(UINavigationController*)self.window.rootViewController pushViewController:ivc animated:NO];
-                                              }
-                                               **/
-                                             
+                                            
                                           }
                                       }];
         

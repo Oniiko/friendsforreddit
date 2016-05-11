@@ -259,7 +259,7 @@
         <!--LoginViewController-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController title="LoginViewController" id="9pv-A4-QxB" customClass="LogInViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInViewController" title="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9pv-A4-QxB" customClass="LogInViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -343,6 +343,7 @@
                     </view>
                     <connections>
                         <outlet property="webView" destination="uAo-XE-nEZ" id="3BR-39-Tkv"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="SuccessLogin" id="Byp-U2-J5u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEr-Wh-Vim" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -758,10 +759,10 @@
             </objects>
             <point key="canvasLocation" x="2388" y="1814"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--TabBarController-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" title="TabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -861,6 +862,7 @@
         <image name="text-align-right-7" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Byp-U2-J5u"/>
         <segue reference="Cbq-sg-HHl"/>
     </inferredMetricsTieBreakers>
 </document>

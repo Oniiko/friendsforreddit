@@ -13,6 +13,7 @@
 #import "PostDetailViewController.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
 #import "UIScrollView+SVPullToRefresh.h"
+#import "GSKeychain.h"
 
 @interface PostViewContoller ()
 @property RedditAPI *api;
@@ -65,6 +66,10 @@
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@" TableView Access Token: %@", [[GSKeychain systemKeychain] secretForKey:@"access_token"]);
+}
+
 /*
  * Displays a generic error message with the corresponding error code
  */
@@ -98,18 +103,13 @@
     } else {
         lastPostID = [self.posts.lastObject post_id];
     }
-    
     [api getPostsAfterPostID:lastPostID InOrder:@"HOT" Completion:^(NSArray *returnedPosts, NSError *error){
-        
         NSLog(@"Error: %@", [error localizedDescription]);
-        
         //Alert user if there is an error (most likely lost data connection)
         if(error){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self displayErrorMessageForError:error];
             });
-            return;
-            
         }
         
         //No more data, stop infinite scrolling
@@ -137,6 +137,7 @@
 
         
     }];
+    
 }
 
 /*
@@ -275,7 +276,6 @@
     long index = [self.tableView indexPathForSelectedRow].row;
 
     //Switch between webview for external links and post detail for self posts
-    //NSLog([posts[index] isSelfPost] ? @"isSelfPost = Yes" : @"isSelfPost = No");
     if ([posts[index] isSelfPost]){
         [self performSegueWithIdentifier:@"PostDetailSegue" sender:self];
     } else {

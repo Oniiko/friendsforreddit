@@ -15,10 +15,6 @@
 @synthesize accessToken;
 @synthesize refreshToken;
 
-
-#import "RedditAPI.h"
-#import "Constants.h"
-
 static RedditAPI *sharedRedditAPI = nil;    // static instance variable
 
 
@@ -44,7 +40,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
                       SendData:(NSData *) sendData
                 WithCompletion:(NSDataHandler) completion {
     
-
+    
     accessToken = [[GSKeychain systemKeychain] secretForKey:@"access_token"];
     //Set up the HTTP request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: url] ;
@@ -62,32 +58,39 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
 #ifdef DEBUG
     NSLog(@"Making API request to reddit\n URL: %@", [url absoluteString]);
 #endif
-    
     //Create data session
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request
                                     completionHandler:^(NSData *data,
                                     NSURLResponse *response,
                                     NSError *error) {
-                                        
                                         //Check for errors
                                         if (error){
                                             NSLog(@"Error connecting to Reddit");
-                                            
                                         } else {
                                             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *) response;
                                             NSLog(@"Request Succesful, HTTP response code %ld", urlResponse.statusCode);
                                             
-                                            if (urlResponse.statusCode == 401){
-                                                //Bad Authorization, refresh token
-                                            } else if (urlResponse.statusCode >= 400 ) {
+                                            if (urlResponse.statusCode == 401) {
+                                                [self refreshAccessToken];
+
+                                                if (self.firstTry == YES || self.firstTry == nil) {
+                                                    self.firstTry = NO;
+                                                    [self makeAPIRequestWithURL:url Method:method SendData: sendData WithCompletion:completion];
+                                                }
+                                                else {
+                                                    self.firstTry = YES;
+                                                }
+                                                
+                                            }
+                                            else if (urlResponse.statusCode >= 400 ) {
                                                 //Create an error if HTTP status code is an error code
                                                 error = [NSError errorWithDomain:@"HTTP Error"
                                                                             code:urlResponse.statusCode
                                                                         userInfo:@{@"response":response}];
+                                            
                                             }
                                             
                                         }
-                                        
                                         completion(data, error);
                                     }];
     //Run data session
@@ -103,7 +106,6 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     
 }
 
-
 /*
  * API Endpoint: /r/friends
  # Method: GET
@@ -114,7 +116,6 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
  */
 - (void) getPostsAfterPostID: (NSString *)postId InOrder: (NSString *)order Completion:(NSArrayHandler) completion{
     NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@/r/friends/.json",BaseURL];
-    
     
     if (postId){
         [urlString appendFormat:@"?count=%d&after=t3_%@",ObjectsPerRequest, postId];
@@ -152,11 +153,73 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
             }
         }
         
+        NSLog(@"Error: %@", error);
         completion(postArray, error);
         
     }];
     
 }
+
+
+
+/*
+ * OAUTH Retrieve Access Token with Refresh Access Token
+ # Method: GET
+ *
+*/
+- (void) refreshAccessToken {
+    refreshToken = [[GSKeychain systemKeychain] secretForKey:@"refresh_token"];
+    if (!refreshToken) {
+        return;
+    }; //Stop if there's no valid refreshToken
+    
+    // Make HTTP request for access token
+    NSURL *authURL = [NSURL URLWithString: [NSString stringWithFormat: @"%@", BaseAccessURL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:authURL];
+    NSString *postParams = [NSString stringWithFormat: @"grant_type=refresh_token&refresh_token=%@", refreshToken];
+    
+    //Encode Basic Authentication Header
+    NSString *authStr = [NSString stringWithFormat:@"%@:%@", ClientID, @""];
+    NSData *authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
+    NSString *authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
+    
+    //Set HTTP header values
+    [request setValue:[NSString stringWithFormat: @"%@", authValue] forHTTPHeaderField: @"Authorization"];
+    [request setValue:UserAgent forHTTPHeaderField:@"User-Agent"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    //Set HTTP Method and Body
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postParams dataUsingEncoding:NSUTF8StringEncoding]];
+
+
+    //Send request to get access token
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      if (error){
+                                          NSLog(@"Error");
+                                      } else {
+                                          NSLog(@"Request Successful");
+                                          NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                               options:NSJSONReadingAllowFragments
+                                                                                                 error:nil];
+                                          for(NSString *key in [json allKeys]) {
+                                              NSLog(@"Key: %@, Value: %@", key, [json objectForKey:key]);
+                                          }
+                                          //Save access tokens to Keychain
+                                          [[GSKeychain systemKeychain] removeSecretForKey:@"access_token"];
+                                          
+                                          [[GSKeychain systemKeychain] setSecret: json[@"access_token"] forKey:@"access_token"];
+                                          
+                                          NSLog(@"Valid Access Token: %@", [[GSKeychain systemKeychain] secretForKey:@"access_token"]);
+                                          
+                                      }
+                                  }];
+    [task resume];
+    
+}
+
 
 /*
  * API Endpoint: /r/friends/comments

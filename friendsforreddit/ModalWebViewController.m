@@ -8,6 +8,7 @@
 
 #import "ModalWebViewController.h"
 #import "Constants.h"
+#import "GSKeychain.h"
 
 @implementation ModalWebViewController
 
@@ -26,7 +27,13 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     // Close modal view when there's an error
     if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"]) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        NSLog(@"Error");
+        if ([[GSKeychain systemKeychain] secretForKey:@"refresh_token"]) {
+            [self performSegueWithIdentifier:@"SuccessLogin" sender:nil];
+        }
+        else {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
     }
 }
 /*

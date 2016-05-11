@@ -21,6 +21,7 @@ typedef void (^NSErrorHandler)(NSError *);
 
 @property NSString *accessToken;
 @property NSString *refreshToken;
+@property BOOL firstTry;
 
 + (RedditAPI *) sharedRedditAPI;
 

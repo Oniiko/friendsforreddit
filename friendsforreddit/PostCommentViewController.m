@@ -39,6 +39,10 @@
     [self postComment];
 }
 
+/* API call to post a comment to Reddit
+ *
+ *
+*/
 - (void) postComment{
     RedditAPI *api = [RedditAPI sharedRedditAPI];
     

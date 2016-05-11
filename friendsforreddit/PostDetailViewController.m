@@ -26,6 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Assign values for post details
     postTitle.text = post.link_title;
     userName.text = post.author;
     subreddit.text = [[NSString alloc] initWithFormat:@"/r/%@",post.subreddit];
