@@ -195,8 +195,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="PostText" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlA-4r-mAw">
-                                <rect key="frame" x="0.0" y="147" width="598" height="147"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="PostText" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlA-4r-mAw">
+                                <rect key="frame" x="0.0" y="147" width="598" height="396"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -238,6 +238,7 @@
                             <constraint firstItem="kan-yc-JZh" firstAttribute="leading" secondItem="VB1-Yj-DgW" secondAttribute="leadingMargin" constant="10" id="nOX-du-qsk"/>
                             <constraint firstItem="SlM-FV-Qkt" firstAttribute="leading" secondItem="VB1-Yj-DgW" secondAttribute="leadingMargin" constant="10" id="qIB-U2-hcy"/>
                             <constraint firstItem="kan-yc-JZh" firstAttribute="top" secondItem="YG9-Ig-cYb" secondAttribute="bottom" constant="10" id="qar-eN-QJG"/>
+                            <constraint firstItem="kVY-qi-XhR" firstAttribute="top" secondItem="GlA-4r-mAw" secondAttribute="bottom" constant="5" id="smF-Lp-GnI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kan-yc-JZh" secondAttribute="trailing" constant="15" id="zZM-bN-t9S"/>
                         </constraints>
                     </view>
