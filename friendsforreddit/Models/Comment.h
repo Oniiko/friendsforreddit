@@ -14,17 +14,26 @@
     @property (nonatomic, copy, readonly) NSString *body;
     @property (nonatomic, copy, readonly) NSString *parent_id;
     @property (nonatomic, copy, readonly) NSString *link_title;
+    @property (nonatomic, copy, readonly) NSString *link_id;
     @property (nonatomic, copy, readonly) NSString *comment_id;
     @property (nonatomic, copy, readonly) NSString *subreddit;
     @property (nonatomic, copy, readonly) NSString *link_url;
     @property (nonatomic, copy, readonly) NSDate *created;
     @property (nonatomic, assign, readonly) NSUInteger score;
     @property (nonatomic, assign, readonly) BOOL score_hidden;
-    @property (nonatomic, assign, readonly) NSMutableArray *replies;
+    @property (nonatomic) NSMutableArray *replies;
+    @property (nonatomic, copy, readonly) NSURL *perm_link_url;
+    @property (nonatomic, assign) NSInteger depth;
 
     //If voted on by logged-in user
     @property (nonatomic, assign) NSInteger vote;
 
 -(id) initWithDictionary:(NSDictionary *) dictionary;
+
+-(void) populateRepliesWithArray:(NSArray *) array;
+
+-(NSString *) getRawLinkID;
+
+-(NSArray *) getFlattenedCommentTree;
 
 @end

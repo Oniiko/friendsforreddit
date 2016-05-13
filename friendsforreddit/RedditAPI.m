@@ -198,6 +198,50 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
     }];
 }
 
+
+/*
+ * API Endpoint: /comments/{article}
+ *
+ * post: a comment or post object to fetch the replies for
+ */
+-(void) getCommentTree:(id)post Completion:(NSErrorHandler)completion{
+    if ([post isKindOfClass:[Comment class]]){
+        Comment *comment = (Comment *)post;
+        NSString *urlString = [[NSString alloc] initWithFormat:@"%@comments/%@", BaseURL, [comment getRawLinkID]];
+
+        //Construct query parameters
+        NSURLComponents *components = [NSURLComponents componentsWithString:urlString];
+        NSURLQueryItem *commentID = [NSURLQueryItem queryItemWithName:@"comment" value:comment.comment_id];
+        
+        components.queryItems = @[ commentID ];
+        NSURL *url = components.URL;
+
+        [self makeAPIRequestWithURL:url Method:@"GET" WithCompletion:^(NSData *data, NSError *error){
+            if(!error){
+                NSError *serializationError = nil;
+                NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                     options:NSJSONReadingAllowFragments
+                                                                       error:&serializationError];
+                
+                
+                NSDictionary *thisPostJson = jsonArray[1][@"data"][@"children"][0][@"data"];
+                
+                //If replies key is a string then there are no replies
+                if (![[thisPostJson objectForKey:@"replies"] isKindOfClass:[NSString class]]){
+                
+                    NSArray *repliesArray = thisPostJson[@"replies"][@"data"][@"children"];
+                
+                    [comment populateRepliesWithArray:repliesArray];
+
+                }
+            }
+            completion(error);
+        }];
+        
+        
+    }
+}
+
 /*
  * API Endpoint: /prefs/friends
  # Method: GET
