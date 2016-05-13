@@ -7,6 +7,7 @@
 //
 
 #import "CommentsViewController.h"
+#import "CommentTreeViewController.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
 #import "PostCommentViewController.h"
 #import "UIScrollView+SVPullToRefresh.h"
@@ -204,8 +205,7 @@
     }
     
     Comment *comment = [self.comments objectAtIndex:indexPath.row];
-    NSLog(@"testing get replies");
-    [api getCommentTree:comment];
+
     
     //Populate cell fields
     cell.postTitle.text = comment.link_title;
@@ -275,6 +275,10 @@
         PostCommentViewController *postCommentView = segue.destinationViewController;
         postCommentView.parentId = [comments[index] comment_id];
         postCommentView.parentType = @"Comment";
+    } else if ([segue.destinationViewController isKindOfClass:[CommentTreeViewController class]]){
+        CommentTreeViewController *commentTreeViewController = segue.destinationViewController;
+        NSLog(@"testing get replies");
+        commentTreeViewController.post = comments[index];
     }
 }
 

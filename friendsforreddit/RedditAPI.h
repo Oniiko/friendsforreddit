@@ -29,7 +29,7 @@ typedef void (^NSErrorHandler)(NSError *);
 
 - (void) getPostsAfterPostID: (NSString *)postId InOrder: (NSString *)order Completion:(NSArrayHandler) completion;
 - (void) getCommentsAfterCommentID: (NSString *)commentId InOrder: (NSString *)order Completion:(NSArrayHandler) completion;
--(void) getCommentTree:(id)post;
+-(void) getCommentTree:(id)post Completion:(NSErrorHandler) completion;
 
 - (void) getFriendsWithCompletion:(NSArrayHandler) completion;
 

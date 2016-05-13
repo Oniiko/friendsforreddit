@@ -194,7 +194,7 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
  *
  * post: a comment or post object to fetch the replies for
  */
--(void) getCommentTree:(id)post{
+-(void) getCommentTree:(id)post Completion:(NSErrorHandler)completion{
     if ([post isKindOfClass:[Comment class]]){
         Comment *comment = (Comment *)post;
         NSString *urlString = [[NSString alloc] initWithFormat:@"%@comments/%@", BaseURL, [comment getRawLinkID]];
@@ -225,7 +225,10 @@ static RedditAPI *sharedRedditAPI = nil;    // static instance variable
 
                 }
             }
+            completion(error);
         }];
+        
+        
     }
 }
 

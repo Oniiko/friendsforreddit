@@ -21,8 +21,9 @@
     @property (nonatomic, copy, readonly) NSDate *created;
     @property (nonatomic, assign, readonly) NSUInteger score;
     @property (nonatomic, assign, readonly) BOOL score_hidden;
-    @property (nonatomic, assign, readonly) NSMutableArray *replies;
+    @property (nonatomic) NSMutableArray *replies;
     @property (nonatomic, copy, readonly) NSURL *perm_link_url;
+    @property (nonatomic, assign) NSInteger depth;
 
     //If voted on by logged-in user
     @property (nonatomic, assign) NSInteger vote;
@@ -32,5 +33,7 @@
 -(void) populateRepliesWithArray:(NSArray *) array;
 
 -(NSString *) getRawLinkID;
+
+-(NSArray *) getFlattenedCommentTree;
 
 @end
