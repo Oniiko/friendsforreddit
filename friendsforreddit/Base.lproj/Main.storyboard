@@ -174,7 +174,6 @@
         <!--PostDetailView-->
         <scene sceneID="bU4-uc-t36">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jPy-qR-RCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="PostDetailView" id="n2O-fX-tl1" customClass="PostDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YG9-Ig-cYb"/>
@@ -252,6 +251,7 @@
                         <outlet property="userName" destination="XSw-5y-9ab" id="n3Q-Wd-Jc9"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jPy-qR-RCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2388" y="-130"/>
         </scene>
@@ -591,7 +591,7 @@
                                                     <color key="textColor" red="0.15294117647058825" green="0.30980392156862746" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="commentText" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61W-B0-vwV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="commentText" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61W-B0-vwV">
                                                     <rect key="frame" x="26" y="30" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -607,6 +607,8 @@
                                                 <constraint firstItem="61W-B0-vwV" firstAttribute="leading" secondItem="H2q-aQ-1Kt" secondAttribute="leadingMargin" constant="10" id="9hd-8n-1SN"/>
                                                 <constraint firstItem="Ghp-qO-hlr" firstAttribute="leading" secondItem="H2q-aQ-1Kt" secondAttribute="leadingMargin" constant="-8" id="DDo-p2-i86"/>
                                                 <constraint firstItem="61W-B0-vwV" firstAttribute="leading" secondItem="Ghp-qO-hlr" secondAttribute="trailing" constant="5" id="E2A-tp-hQq"/>
+                                                <constraint firstItem="vep-gk-h3v" firstAttribute="top" secondItem="H2q-aQ-1Kt" secondAttribute="topMargin" id="FFK-aJ-zCh"/>
+                                                <constraint firstItem="vep-gk-h3v" firstAttribute="top" secondItem="H2q-aQ-1Kt" secondAttribute="topMargin" constant="5" id="ORC-8D-9WE"/>
                                                 <constraint firstItem="Ghp-qO-hlr" firstAttribute="bottom" secondItem="H2q-aQ-1Kt" secondAttribute="bottomMargin" constant="20" id="eZ3-eU-gPO"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="61W-B0-vwV" secondAttribute="trailing" id="rgz-Ie-u7f"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="61W-B0-vwV" secondAttribute="bottom" constant="36" id="sw9-ja-lgK"/>
@@ -670,6 +672,7 @@
                             <constraint firstItem="7sF-Tl-ozF" firstAttribute="leading" secondItem="lp2-C7-boW" secondAttribute="leadingMargin" constant="-20" id="NGX-pB-yRj"/>
                             <constraint firstItem="C7u-V4-fGP" firstAttribute="leading" secondItem="WsE-X2-gOv" secondAttribute="trailing" constant="10" id="RGA-cj-nSZ"/>
                             <constraint firstItem="2tZ-tx-Ylf" firstAttribute="top" secondItem="vru-LO-nKi" secondAttribute="bottom" constant="10" id="TSL-G0-PUj"/>
+                            <constraint firstItem="7sF-Tl-ozF" firstAttribute="top" secondItem="hpL-Np-QH7" secondAttribute="bottom" id="XXR-vZ-TEp"/>
                             <constraint firstItem="2tZ-tx-Ylf" firstAttribute="top" secondItem="C7u-V4-fGP" secondAttribute="bottom" constant="10" id="hXO-uH-gVh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7sF-Tl-ozF" secondAttribute="trailing" constant="-20" id="jDi-Dy-zeO"/>
                             <constraint firstItem="2tZ-tx-Ylf" firstAttribute="top" secondItem="WsE-X2-gOv" secondAttribute="bottom" constant="10" id="ojo-il-LNP"/>
@@ -835,6 +838,10 @@
         <scene sceneID="Zoh-Fq-beE">
             <objects>
                 <viewController id="RWo-1L-cCy" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lkm-Xk-PlZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ed9-rC-vta"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="D9q-4v-74v">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -853,6 +860,6 @@
         <image name="text-align-right-7" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4wW-Mp-OoZ"/>
+        <segue reference="Cbq-sg-HHl"/>
     </inferredMetricsTieBreakers>
 </document>

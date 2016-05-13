@@ -37,6 +37,9 @@
     self.commentAuthor.text = post.author;
     self.subreddit.text = post.subreddit;
     self.score.text = [[NSString alloc] initWithFormat:@"%lu", post.score];
+    self.timestamp.text = [NSDateFormatter localizedStringFromDate: post.created
+                                                         dateStyle:NSDateFormatterMediumStyle
+                                                         timeStyle:NSDateFormatterShortStyle];
     
     [api getCommentTree:post Completion:^(NSError * error){
         if (!error){
